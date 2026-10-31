@@ -92,7 +92,7 @@ export type Stat = {
 };
 
 export const stats: Stat[] = [
-  { value: 48, suffix: "+", label: "Proyek selesai", description: "Untuk klien lokal & regional" },
+  { value: 4, suffix: "", label: "Proyek selesai", description: "Untuk klien lokal & regional" },
   { value: 3.5, suffix: " thn", label: "Pengalaman", description: "Industri web dan produk digital" },
   { value: 96, suffix: "%", label: "Klien puas", description: "Dari survei akhir proyek" },
   { value: 1, suffix: " s", label: "Target LCP", description: "Standar performa di tiap proyek" },
