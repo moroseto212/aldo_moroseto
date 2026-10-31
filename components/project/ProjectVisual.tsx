@@ -30,6 +30,11 @@ export default function ProjectVisual({
   fullHeight?: boolean;
 }) {
   const grows = fullHeight && Boolean(project.cover);
+  // A source narrower than the detail container must not be upscaled: serving a
+  // 1920w variant from an 896px file looks blurry. Show it at its natural size
+  // (centered) and let the browser use the original file — pixel-for-pixel sharp.
+  const nativeCover =
+    grows && project.coverWidth !== undefined && project.coverWidth < 1200;
 
   return (
     <div
@@ -49,6 +54,12 @@ export default function ProjectVisual({
               height={project.coverHeight ?? 6637}
               sizes="(min-width: 1280px) 1216px, 100vw"
               quality={95}
+              unoptimized={nativeCover}
+              style={
+                nativeCover
+                  ? { maxWidth: project.coverWidth, marginInline: "auto" }
+                  : undefined
+              }
               className="block h-auto w-full"
               priority
             />
