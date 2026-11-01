@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  experimental: {
+    // Keep security-upgrade nudges for coding agents enabled.
+    agentUpgrade: "security",
+  },
   cacheComponents: true,
   partialPrefetching: true,
   images: {
