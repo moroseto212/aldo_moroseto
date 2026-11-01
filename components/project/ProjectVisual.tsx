@@ -39,7 +39,7 @@ export default function ProjectVisual({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-line",
+        "relative overflow-hidden border border-line",
         grows ? "" : "aspect-[16/10]",
         className,
       )}
@@ -135,7 +135,7 @@ export default function ProjectVisual({
         </>
       )}
 
-      <div className="absolute bottom-4 left-4 rounded-lg border border-white/10 bg-black/40 px-2.5 py-1 text-[0.65rem] font-medium tracking-wide text-white/70 uppercase backdrop-blur-sm md:bottom-6 md:left-6 md:text-xs">
+      <div className="absolute bottom-4 left-4 border border-white/10 bg-black/40 px-2.5 py-1 text-[0.65rem] font-medium tracking-wide text-white/70 uppercase backdrop-blur-sm md:bottom-6 md:left-6 md:text-xs">
         {project.categories[0]}
       </div>
     </div>

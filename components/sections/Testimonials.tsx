@@ -1,33 +1,52 @@
-import { Quote } from "lucide-react";
 import Reveal from "@/components/motion/Reveal";
-import { SectionHeading } from "@/components/ui/Section";
 import { testimonials } from "@/data/projects";
 
 export default function Testimonials() {
-  return (
-    <section className="border-t border-line bg-surface/30 py-16 md:py-28">
-      <div className="container-page">
-        <SectionHeading
-          label="Testimoni"
-          title="Kata mereka yang bekerja sama"
-          align="center"
-        />
+  const [lead, ...rest] = testimonials;
 
-        <div className="grid gap-5 md:grid-cols-3">
-          {testimonials.map((testimonial, index) => (
-            <Reveal key={testimonial.name} delay={index * 0.1} className="h-full">
-              <figure className="card flex h-full flex-col p-6 md:p-7">
-                <Quote size={20} className="text-accent" aria-hidden="true" />
-                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-muted md:text-base">
-                  {testimonial.quote}
+  return (
+    <section className="border-t border-line py-16 md:py-24">
+      <div className="container-page">
+        <div className="grid gap-10 md:grid-cols-12 md:gap-8">
+          <div className="md:col-span-3">
+            <span className="label-mono flex items-center gap-2.5 text-faint">
+              <span aria-hidden="true" className="h-px w-6 bg-foreground/30" />
+              Testimoni
+            </span>
+            <h2 className="text-heading mt-4 text-balance">
+              Kata mereka yang bekerja sama
+            </h2>
+          </div>
+
+          <div className="md:col-span-9">
+            <Reveal>
+              <figure>
+                <blockquote className="max-w-2xl text-xl leading-[1.5] text-balance md:text-2xl">
+                  {lead.quote}
                 </blockquote>
-                <figcaption className="mt-6 border-t border-line pt-4">
-                  <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
-                  <p className="mt-0.5 text-xs text-faint">{testimonial.role}</p>
+                <figcaption className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-t border-line pt-4">
+                  <span className="label-mono text-foreground">{lead.name}</span>
+                  <span className="label-mono text-faint">{lead.role}</span>
                 </figcaption>
               </figure>
             </Reveal>
-          ))}
+
+            <div className="mt-10 grid gap-8 border-t border-line pt-8 sm:grid-cols-2 md:gap-10">
+              {rest.map((testimonial, index) => (
+                <Reveal key={testimonial.name} delay={0.08 + index * 0.06}>
+                  <figure>
+                    <blockquote className="text-sm leading-relaxed text-muted">
+                      {testimonial.quote}
+                    </blockquote>
+                    <figcaption className="mt-4">
+                      <p className="label-mono text-foreground">{testimonial.name}</p>
+                      <p className="label-mono mt-1.5 text-faint">{testimonial.role}</p>
+                    </figcaption>
+                  </figure>
+                </Reveal>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -4,21 +4,33 @@ import { stats } from "@/data/profile";
 
 export default function StatsSection() {
   return (
-    <section className="border-y border-line bg-surface/40 py-12 md:py-16">
+    <section className="border-y border-line">
       <div className="container-page">
-        <div className="grid grid-cols-2 gap-8 md:gap-6 lg:grid-cols-4">
+        <ul className="grid grid-cols-2 gap-px bg-line md:grid-cols-4">
           {stats.map((stat, index) => (
-            <Reveal key={stat.label} delay={index * 0.08}>
-              <div className="text-center md:text-left">
-                <p className="text-4xl font-semibold tracking-tight whitespace-nowrap md:text-5xl">
-                  <Counter value={stat.value} suffix={stat.suffix} />
-                </p>
-                <p className="mt-2 text-sm font-medium text-foreground">{stat.label}</p>
-                <p className="mt-1 text-xs leading-relaxed text-faint">{stat.description}</p>
-              </div>
-            </Reveal>
+            <li key={stat.label} className="bg-background">
+              <Reveal delay={index * 0.06} className="h-full">
+                <div className="flex h-full flex-col justify-between gap-8 px-4 py-7 md:px-6 md:py-9">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="label-mono text-faint">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="label-mono text-right text-faint">{stat.label}</span>
+                  </div>
+
+                  <div>
+                    <p className="text-3xl font-medium tracking-tight whitespace-nowrap md:text-4xl">
+                      <Counter value={stat.value} suffix={stat.suffix} />
+                    </p>
+                    <p className="mt-2 text-xs leading-relaxed text-faint">
+                      {stat.description}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

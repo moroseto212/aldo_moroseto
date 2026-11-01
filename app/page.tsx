@@ -1,5 +1,5 @@
 import Hero from "@/components/sections/home/Hero";
-import ToolMarquee from "@/components/sections/home/ToolMarquee";
+import ToolList from "@/components/sections/home/ToolList";
 import StatsSection from "@/components/sections/home/StatsSection";
 import FeaturedProjects from "@/components/sections/home/FeaturedProjects";
 import ServicesPreview from "@/components/sections/home/ServicesPreview";
@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <ToolMarquee />
+      <ToolList />
       <StatsSection />
       <FeaturedProjects />
       <ServicesPreview />

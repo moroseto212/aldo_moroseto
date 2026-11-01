@@ -1,4 +1,4 @@
-import ProjectCard from "@/components/project/ProjectCard";
+import ProjectRow from "@/components/project/ProjectRow";
 import Button from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/Section";
 import { projects } from "@/data/projects";
@@ -7,7 +7,7 @@ export default function FeaturedProjects() {
   const featured = projects.slice(0, 3);
 
   return (
-    <section className="py-16 md:py-28">
+    <section className="py-16 md:py-24">
       <div className="container-page">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
@@ -23,9 +23,9 @@ export default function FeaturedProjects() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 md:mt-14">
           {featured.map((project, index) => (
-            <ProjectCard key={project.slug} project={project} index={index} />
+            <ProjectRow key={project.slug} project={project} index={index} />
           ))}
         </div>
       </div>
