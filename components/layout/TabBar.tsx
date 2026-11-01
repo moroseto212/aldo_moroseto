@@ -27,7 +27,7 @@ export default function TabBar() {
   return (
     <nav
       aria-label="Navigasi tab"
-      className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-background/85 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl md:hidden"
+      className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-background/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl md:hidden"
     >
       <ul className="flex h-14">
         {tabs.map(({ href, label, Icon }) => {
@@ -47,12 +47,14 @@ export default function TabBar() {
                 {active && (
                   <motion.span
                     layoutId="tab-active"
-                    className="absolute inset-x-3 top-0 h-0.5 rounded-full bg-gradient-to-r from-accent to-accent-2"
+                    className="absolute inset-x-0 top-0 h-[2px] bg-foreground"
                     transition={{ type: "spring", stiffness: 420, damping: 34 }}
                   />
                 )}
-                <Icon size={19} strokeWidth={active ? 2.2 : 1.8} aria-hidden="true" />
-                <span className="text-[0.6rem] font-medium tracking-tight">{label}</span>
+                <Icon size={18} strokeWidth={active ? 2 : 1.6} aria-hidden="true" />
+                <span className="font-mono text-[0.55rem] tracking-[0.08em] uppercase">
+                  {label}
+                </span>
               </Link>
             </li>
           );

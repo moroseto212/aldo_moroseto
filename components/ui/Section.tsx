@@ -11,7 +11,7 @@ type SectionProps = {
 
 export function Section({ id, children, className, as: Tag = "section" }: SectionProps) {
   return (
-    <Tag id={id} className={cn("relative py-16 md:py-28", className)}>
+    <Tag id={id} className={cn("relative py-16 md:py-24", className)}>
       <div className="container-page">{children}</div>
     </Tag>
   );
@@ -35,14 +35,14 @@ export function SectionHeading({
   return (
     <Reveal
       className={cn(
-        "mb-12 flex flex-col gap-4 md:mb-16",
+        "mb-10 flex flex-col gap-3 md:mb-14",
         align === "center" && "items-center text-center",
         className,
       )}
     >
       {label && (
-        <span className="inline-flex w-fit items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium tracking-wide text-muted uppercase">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+        <span className="label-mono flex items-center gap-2.5 text-faint">
+          <span aria-hidden="true" className="h-px w-6 bg-foreground/30" />
           {label}
         </span>
       )}
@@ -50,7 +50,7 @@ export function SectionHeading({
       {description && (
         <p
           className={cn(
-            "max-w-2xl text-base leading-relaxed text-muted md:text-lg",
+            "max-w-xl text-base leading-relaxed text-muted md:text-lg",
             align === "center" && "mx-auto",
           )}
         >

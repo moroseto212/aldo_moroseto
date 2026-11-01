@@ -16,8 +16,8 @@ export default function Reveal({
   children,
   className,
   delay = 0,
-  duration = 0.7,
-  y = 28,
+  duration = 0.5,
+  y = 12,
   once = true,
 }: RevealProps) {
   return (

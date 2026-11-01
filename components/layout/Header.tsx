@@ -44,13 +44,13 @@ export default function Header() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-300 md:pt-0",
           scrolled || open
-            ? "border-b border-line bg-background/80 backdrop-blur-xl"
+            ? "border-b border-line bg-background/90 backdrop-blur-xl"
             : "border-b border-transparent bg-transparent",
         )}
       >
         <div
           className={cn(
-            "container-page flex items-center justify-between gap-6 transition-[height] duration-300 ease-out md:h-20",
+            "container-page flex items-center justify-between gap-6 transition-[height] duration-300 ease-out md:h-16",
             open ? "h-16" : scrolled ? "h-14" : "h-16",
           )}
         >
@@ -61,31 +61,38 @@ export default function Header() {
               width={72}
               height={72}
               priority
-              className="h-9 w-9 rounded-xl border border-line object-cover transition-colors group-hover:border-white/30"
+              className="h-8 w-8 border border-line object-cover transition-colors group-hover:border-foreground/40"
             />
-            <span className="hidden text-sm font-medium tracking-tight sm:block">
+            <span className="label-mono hidden text-foreground transition-colors group-hover:text-muted sm:block">
               Aldo Moroseto
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigasi utama">
-            {navigation.map((item) => {
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Navigasi utama">
+            {navigation.map((item, index) => {
               const active =
                 item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={cn(
-                    "relative rounded-full px-3.5 py-2 text-sm transition-colors duration-200",
-                    active ? "text-foreground" : "text-muted hover:text-foreground",
-                  )}
+                  className="label-mono group relative flex items-baseline gap-1.5 py-2"
                 >
-                  {item.label}
+                  <span aria-hidden="true" className="text-[9px] text-faint">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    className={cn(
+                      "transition-colors duration-200",
+                      active ? "text-foreground" : "text-muted group-hover:text-foreground",
+                    )}
+                  >
+                    {item.label}
+                  </span>
                   {active && (
                     <motion.span
                       layoutId="nav-active"
-                      className="absolute inset-0 -z-10 rounded-full border border-line bg-surface"
+                      className="absolute inset-x-0 -bottom-0.5 h-px bg-foreground"
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
@@ -97,7 +104,7 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <Link
               href="/kontak"
-              className="hidden h-11 items-center gap-2 rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-white/90 sm:inline-flex lg:h-10"
+              className="hidden h-10 items-center gap-2 border border-foreground bg-foreground px-4 font-mono text-[10px] font-medium tracking-[0.14em] text-background uppercase transition-colors hover:bg-transparent hover:text-foreground sm:inline-flex"
             >
               Hubungi saya
             </Link>
@@ -106,53 +113,53 @@ export default function Header() {
               onClick={() => setOpen((value) => !value)}
               aria-expanded={open}
               aria-label={open ? "Tutup menu" : "Buka menu"}
-              className="hidden h-11 w-11 items-center justify-center rounded-full border border-line text-foreground transition-colors hover:border-white/30 md:flex lg:hidden"
+              className="hidden h-10 w-10 items-center justify-center border border-line text-foreground transition-colors hover:border-foreground/40 md:flex lg:hidden"
             >
               {open ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </div>
 
-        <motion.div
-          style={{ scaleX: progress }}
-          className="h-[2px] origin-left bg-gradient-to-r from-accent to-accent-2"
-        />
+        <motion.div style={{ scaleX: progress }} className="h-px origin-left bg-foreground/40" />
       </header>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-40 flex flex-col overflow-y-auto overscroll-contain bg-background pt-[calc(4rem+env(safe-area-inset-top))] md:pt-[5.125rem] lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col overflow-y-auto overscroll-contain bg-background pt-[calc(4rem+env(safe-area-inset-top))] md:pt-[4rem] lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
           >
             <nav
-              className="container-page my-auto flex flex-col gap-2 py-8"
+              className="container-page my-auto flex flex-col py-8"
               aria-label="Navigasi mobile"
             >
               {navigation.map((item, index) => (
                 <motion.div
                   key={item.href}
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
+                  exit={{ opacity: 0, y: -8 }}
                   transition={{
-                    duration: 0.45,
-                    delay: 0.06 + index * 0.05,
+                    duration: 0.35,
+                    delay: 0.05 + index * 0.04,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="group flex items-baseline justify-between gap-4 border-b border-line py-4"
+                    className="group flex items-baseline gap-5 border-b border-line py-4"
                   >
-                    <span className="text-3xl font-medium tracking-tight text-balance">
+                    <span aria-hidden="true" className="label-mono w-6 shrink-0 text-faint">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="flex-1 text-2xl font-normal tracking-tight text-foreground text-balance">
                       {item.label}
                     </span>
-                    <span className="text-xs text-faint transition-colors group-hover:text-muted">
+                    <span className="max-w-[45%] text-right text-[11px] leading-snug text-faint transition-colors group-hover:text-muted">
                       {item.description}
                     </span>
                   </Link>
@@ -163,13 +170,13 @@ export default function Header() {
               <Link
                 href="/kontak"
                 onClick={() => setOpen(false)}
-                className="inline-flex h-12 items-center justify-center rounded-full bg-foreground text-sm font-medium text-background"
+                className="inline-flex h-12 items-center justify-center border border-foreground bg-foreground font-mono text-[11px] font-medium tracking-[0.14em] text-background uppercase"
               >
                 Hubungi saya
               </Link>
               <a
                 href={`mailto:${contact.email}`}
-                className="text-center text-sm text-muted"
+                className="py-2 text-center font-mono text-[11px] tracking-[0.06em] text-muted"
               >
                 {contact.email}
               </a>

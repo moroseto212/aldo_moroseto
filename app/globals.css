@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #08080a;
-  --color-foreground: #ededef;
-  --color-surface: #101015;
-  --color-surface-2: #16161d;
-  --color-muted: #a1a1aa;
-  --color-faint: #6b6b75;
-  --color-line: rgba(255, 255, 255, 0.1);
-  --color-accent: #7c72ff;
-  --color-accent-2: #4fd1c5;
-  --color-success: #4ade80;
-  --color-danger: #f87171;
+  /* Arsip teknis: grafit netral, teks bertone kertas, satu aksen bone. */
+  --color-background: #0b0b0c;
+  --color-foreground: #e8e6e3;
+  --color-surface: #101012;
+  --color-surface-2: #16161a;
+  --color-muted: #b0aca4;
+  --color-faint: #85817a;
+  --color-line: rgba(232, 230, 227, 0.12);
+  --color-accent: #d9d4c7;
+  --color-accent-2: #8d887c;
+  --color-success: #86b98c;
+  --color-danger: #d98c7f;
 }
 
 @theme inline {
@@ -38,8 +39,8 @@
 
   :focus-visible {
     outline: 2px solid var(--color-accent);
-    outline-offset: 3px;
-    border-radius: 4px;
+    outline-offset: 2px;
+    border-radius: 0;
   }
 
   ::-webkit-scrollbar {
@@ -52,13 +53,13 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #26262e;
+    background: #26262a;
     border-radius: 999px;
     border: 2px solid var(--color-background);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #3a3a45;
+    background: #45423d;
   }
 }
 
@@ -122,28 +123,41 @@
 }
 
 .text-display {
-  font-size: clamp(2.6rem, 7.5vw, 5.75rem);
-  line-height: 0.98;
-  letter-spacing: -0.045em;
-  font-weight: 600;
+  font-size: clamp(2.5rem, 6.4vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  font-weight: 500;
 }
 
 .text-display-sm {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  font-weight: 600;
+  font-size: clamp(1.9rem, 4.2vw, 3.05rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  font-weight: 500;
 }
 
 .text-heading {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
   line-height: 1.15;
-  letter-spacing: -0.025em;
-  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+/* Label arsip: monospace, huruf kecil semua, renggang. Warna diatur pemakai
+   lewat utility (text-faint / text-foreground) — diletakkan di layer
+   components supaya utility Tailwind tetap bisa menimpanya. */
+@layer components {
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
 }
 
 .text-gradient {
-  background: linear-gradient(120deg, #fff 0%, #b9b4ff 45%, var(--color-accent) 100%);
+  background: linear-gradient(120deg, #fff 0%, #e8e6e3 55%, #b8b2a4 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -162,10 +176,13 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
 }
 
-.card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
-  border-radius: 1.25rem;
+@layer components {
+  /* Permukaan arsip: tanpa radius, hanya garis tipis. */
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 0;
+  }
 }
 
 .marquee-track {

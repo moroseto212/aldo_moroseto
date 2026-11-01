@@ -13,15 +13,15 @@ type ButtonProps = {
 
 const variants = {
   primary:
-    "bg-foreground text-background hover:bg-white border border-transparent font-medium",
+    "border border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground",
   secondary:
-    "bg-transparent text-foreground border border-line hover:border-white/30 hover:bg-white/5",
-  ghost: "bg-transparent text-muted border border-transparent hover:text-foreground",
+    "border border-line text-foreground hover:border-foreground/40 hover:bg-white/[0.04]",
+  ghost: "border border-transparent text-muted hover:text-foreground",
 };
 
 const sizes = {
-  sm: "h-11 px-4 text-sm gap-1.5 md:h-9",
-  md: "h-11 px-5 text-sm gap-2",
+  sm: "h-9 gap-2 px-3.5 text-[10px]",
+  md: "h-11 gap-2 px-5 text-[11px]",
 };
 
 export default function Button({
@@ -33,7 +33,7 @@ export default function Button({
   className,
 }: ButtonProps) {
   const classes = cn(
-    "group inline-flex items-center justify-center rounded-full transition-colors duration-200",
+    "group inline-flex items-center justify-center rounded-none font-mono font-medium uppercase tracking-[0.14em] transition-colors duration-200",
     variants[variant],
     sizes[size],
     className,
@@ -44,8 +44,8 @@ export default function Button({
       {children}
       <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
         <svg
-          width="14"
-          height="14"
+          width="12"
+          height="12"
           viewBox="0 0 14 14"
           fill="none"
           aria-hidden="true"

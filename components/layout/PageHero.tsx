@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import Reveal from "@/components/motion/Reveal";
-import WordReveal from "@/components/motion/WordReveal";
 
 type PageHeroProps = {
   label: string;
@@ -11,29 +10,32 @@ type PageHeroProps = {
 
 export default function PageHero({ label, title, description, children }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden border-b border-line pb-16 pt-32 md:pb-20 md:pt-44">
-      <div className="bg-grid absolute inset-0 opacity-70" />
-      <div className="absolute -top-32 left-1/2 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px]" />
-
-      <div className="container-page relative">
-        <Reveal delay={0.05}>
-          <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium tracking-wide text-muted uppercase">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            {label}
-          </span>
+    <section className="border-b border-line pb-14 pt-28 md:pb-20 md:pt-36">
+      <div className="container-page">
+        <Reveal>
+          <div className="flex items-baseline justify-between gap-6 border-b border-line pb-4">
+            <span className="label-mono text-foreground">{label}</span>
+            <span className="label-mono hidden text-faint sm:block">
+              Arsip — Aldo Moroseto
+            </span>
+          </div>
         </Reveal>
 
-        <h1 className="text-display mt-6 max-w-4xl text-balance">
-          <WordReveal text={title} delay={0.15} />
-        </h1>
+        <Reveal delay={0.08}>
+          <h1 className="mt-9 max-w-4xl text-display text-balance">{title}</h1>
+        </Reveal>
 
-        <Reveal delay={0.35}>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+        <Reveal delay={0.16}>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg">
             {description}
           </p>
         </Reveal>
 
-        {children && <Reveal delay={0.45}>{children}</Reveal>}
+        {children && (
+          <Reveal delay={0.24}>
+            <div className="mt-8">{children}</div>
+          </Reveal>
+        )}
       </div>
     </section>
   );
