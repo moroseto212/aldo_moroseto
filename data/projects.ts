@@ -192,20 +192,8 @@ export const projects: Project[] = [
 export const testimonials = [
   {
     quote:
-      "Aldo tidak hanya menerjemahkan desain kami ke kode — ia menemukan celah di alur pengguna yang bahkan belum kami sadari. Hasilnya bersih dan cepat.",
-    name: "Dinda Rahmawati",
-    role: "Product Lead, Nusa Fintech",
-  },
-  {
-    quote:
       "Komunikasinya jelas, jadwalnya tepat, dan animasi yang dibuat terasa mahal tanpa mengorbankan kecepatan situs. Klien kami puas sejak versi pertama.",
     name: "Bagas Nugroho",
     role: "Founder, Kreasi Studio",
-  },
-  {
-    quote:
-      "Website kami selesai sebelum deadline dan tim internal bisa mengedit konten sendiri. Itu yang paling kami butuhkan.",
-    name: "Sari Halim",
-    role: "Marketing Manager, Sentra Karya",
   },
 ];

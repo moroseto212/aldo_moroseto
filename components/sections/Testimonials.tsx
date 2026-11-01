@@ -4,6 +4,8 @@ import { testimonials } from "@/data/projects";
 export default function Testimonials() {
   const [lead, ...rest] = testimonials;
 
+  if (!lead) return null;
+
   return (
     <section className="border-t border-line py-16 md:py-24">
       <div className="container-page">
@@ -31,21 +33,23 @@ export default function Testimonials() {
               </figure>
             </Reveal>
 
-            <div className="mt-10 grid gap-8 border-t border-line pt-8 sm:grid-cols-2 md:gap-10">
-              {rest.map((testimonial, index) => (
-                <Reveal key={testimonial.name} delay={0.08 + index * 0.06}>
-                  <figure>
-                    <blockquote className="text-sm leading-relaxed text-muted">
-                      {testimonial.quote}
-                    </blockquote>
-                    <figcaption className="mt-4">
-                      <p className="label-mono text-foreground">{testimonial.name}</p>
-                      <p className="label-mono mt-1.5 text-faint">{testimonial.role}</p>
-                    </figcaption>
-                  </figure>
-                </Reveal>
-              ))}
-            </div>
+            {rest.length > 0 && (
+              <div className="mt-10 grid gap-8 border-t border-line pt-8 sm:grid-cols-2 md:gap-10">
+                {rest.map((testimonial, index) => (
+                  <Reveal key={testimonial.name} delay={0.08 + index * 0.06}>
+                    <figure>
+                      <blockquote className="text-sm leading-relaxed text-muted">
+                        {testimonial.quote}
+                      </blockquote>
+                      <figcaption className="mt-4">
+                        <p className="label-mono text-foreground">{testimonial.name}</p>
+                        <p className="label-mono mt-1.5 text-faint">{testimonial.role}</p>
+                      </figcaption>
+                    </figure>
+                  </Reveal>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
