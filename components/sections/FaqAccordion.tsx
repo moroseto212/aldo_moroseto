@@ -20,15 +20,20 @@ export default function FaqAccordion() {
               type="button"
               onClick={() => setOpenIndex(isOpen ? null : index)}
               aria-expanded={isOpen}
-              className="flex w-full items-start justify-between gap-6 py-5 text-left transition-colors hover:text-foreground md:py-6"
+              className="flex w-full items-start justify-between gap-6 py-5 text-left transition-colors hover:text-foreground focus-visible:outline-none md:py-6"
             >
-              <span className="text-base font-medium tracking-tight text-balance md:text-lg">
-                {faq.question}
+              <span className="flex min-w-0 items-start gap-4 md:gap-5">
+                <span className="label-mono shrink-0 pt-1.5 text-faint">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="text-base font-medium tracking-tight text-balance md:text-lg">
+                  {faq.question}
+                </span>
               </span>
               <span
                 className={cn(
-                  "mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-muted transition-transform duration-300",
-                  isOpen && "rotate-45 border-accent text-foreground",
+                  "mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center border border-line text-muted transition-transform duration-300",
+                  isOpen && "rotate-45 border-foreground text-foreground",
                 )}
               >
                 <Plus size={14} aria-hidden="true" />
@@ -44,7 +49,7 @@ export default function FaqAccordion() {
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="max-w-3xl pb-6 text-sm leading-relaxed text-muted md:text-base">
+                  <p className="max-w-3xl pb-6 pl-8 text-sm leading-relaxed text-muted md:pl-9 md:text-base">
                     {faq.answer}
                   </p>
                 </motion.div>

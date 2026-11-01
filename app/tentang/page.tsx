@@ -2,16 +2,24 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "@/components/layout/PageHero";
 import Reveal from "@/components/motion/Reveal";
+import StatsSection from "@/components/sections/home/StatsSection";
 import Button from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { experience, profile, skills, stats } from "@/data/profile";
+import { experience, profile, skills } from "@/data/profile";
 import { formatNumber } from "@/lib/format";
-import Counter from "@/components/motion/Counter";
 
 export const metadata: Metadata = {
   title: "Tentang",
   description: `Kenali perjalanan, prinsip kerja, dan keahlian ${profile.name} — ${profile.role} dari Bekasi, Indonesia.`,
 };
+
+const summary = [
+  { label: "Nama", value: profile.name },
+  { label: "Peran", value: profile.role },
+  { label: "Lokasi", value: profile.location },
+  { label: "Pengalaman", value: `${formatNumber(profile.yearsOfExperience)} tahun` },
+  { label: "Bahasa", value: "Indonesia, Inggris" },
+];
 
 export default function AboutPage() {
   return (
@@ -21,7 +29,7 @@ export default function AboutPage() {
         title="Tiga setengah tahun merawat detail di balik layar"
         description="Perjalanan dari developer freelance di Bekasi hingga menjadi website developer yang membangun produk digital — dengan prinsip kerja yang selalu sama."
       >
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button href="/kontak">Ajak kerja sama</Button>
           <Button href="/portofolio" variant="secondary">
             Lihat portofolio
@@ -33,57 +41,49 @@ export default function AboutPage() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <SectionHeading label="Cerita" title="Sedikit tentang saya" />
-            <div className="space-y-5">
+            <div className="border-t border-line">
               {profile.bio.map((paragraph, index) => (
                 <Reveal key={index} delay={index * 0.08}>
-                  <p className="text-base leading-[1.85] text-muted md:text-lg">{paragraph}</p>
+                  <div className="flex gap-4 border-b border-line py-5 md:gap-6 md:py-6">
+                    <span className="label-mono shrink-0 pt-1.5 text-faint">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-base leading-[1.85] text-muted md:text-lg">{paragraph}</p>
+                  </div>
                 </Reveal>
               ))}
             </div>
           </div>
 
           <Reveal className="lg:col-span-5" delay={0.2}>
-            <div className="lg:sticky lg:top-28 space-y-5">
-              <div className="card mx-auto overflow-hidden lg:max-w-none">
+            <div className="space-y-5 lg:sticky lg:top-24">
+              <figure className="mx-auto max-w-sm border border-line bg-surface lg:max-w-none">
                 <Image
                   src={profile.photo}
                   alt={`Foto ${profile.name}`}
                   width={720}
                   height={900}
-                  className="aspect-[4/5] w-full max-w-sm object-cover object-top lg:max-w-none"
+                  className="aspect-[4/5] w-full object-cover object-top"
                 />
-              </div>
+              </figure>
 
-              <div className="card p-6 md:p-7">
-                <p className="text-xs font-medium tracking-widest text-faint uppercase">
-                  Ringkasan
-                </p>
-                <dl className="mt-5 space-y-4 text-sm">
-                  <div className="flex justify-between gap-4 border-b border-line pb-4">
-                    <dt className="text-muted">Nama</dt>
-                    <dd className="text-right font-medium">{profile.name}</dd>
-                  </div>
-                  <div className="flex justify-between gap-4 border-b border-line pb-4">
-                    <dt className="text-muted">Peran</dt>
-                    <dd className="text-right font-medium">{profile.role}</dd>
-                  </div>
-                  <div className="flex justify-between gap-4 border-b border-line pb-4">
-                    <dt className="text-muted">Lokasi</dt>
-                    <dd className="text-right font-medium">{profile.location}</dd>
-                  </div>
-                  <div className="flex justify-between gap-4 border-b border-line pb-4">
-                    <dt className="text-muted">Pengalaman</dt>
-                    <dd className="text-right font-medium">
-                      {formatNumber(profile.yearsOfExperience)} tahun
-                    </dd>
-                  </div>
-                  <div className="flex justify-between gap-4">
-                    <dt className="text-muted">Bahasa</dt>
-                    <dd className="text-right font-medium">Indonesia, Inggris</dd>
-                  </div>
+              <div className="border border-line">
+                <p className="label-mono border-b border-line px-5 py-3 text-faint">Ringkasan</p>
+                <dl className="px-5">
+                  {summary.map((item) => (
+                    <div
+                      key={item.label}
+                      className="flex items-baseline justify-between gap-4 border-b border-line py-3.5 last:border-b-0"
+                    >
+                      <dt className="label-mono text-faint">{item.label}</dt>
+                      <dd className="text-right text-sm font-medium text-foreground">
+                        {item.value}
+                      </dd>
+                    </div>
+                  ))}
                 </dl>
-                <div className="mt-6">
-                  <Button href="/kontak" variant="secondary" className="w-full">
+                <div className="border-t border-line p-4">
+                  <Button href="/kontak" variant="secondary" size="sm" className="w-full">
                     Kirim pesan
                   </Button>
                 </div>
@@ -93,22 +93,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <section className="border-y border-line bg-surface/40 py-12 md:py-16">
-        <div className="container-page">
-          <div className="grid grid-cols-2 gap-8 md:gap-6 lg:grid-cols-4">
-            {stats.map((stat, index) => (
-              <Reveal key={stat.label} delay={index * 0.08}>
-                <div className="text-center md:text-left">
-                  <p className="text-3xl font-semibold tracking-tight whitespace-nowrap md:text-4xl">
-                    <Counter value={stat.value} suffix={stat.suffix} />
-                  </p>
-                  <p className="mt-2 text-sm text-muted">{stat.label}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <StatsSection />
 
       <Section>
         <SectionHeading
@@ -117,27 +102,31 @@ export default function AboutPage() {
           description="Beberapa tahun mengerjakan website untuk klien dari berbagai industri — satu peran, satu standar: kerapihan, kecepatan, dan komunikasi yang jelas."
         />
 
-        <ol className="relative space-y-8 border-l border-line pl-6 md:pl-10">
+        <ol className="border-t border-line">
           {experience.map((item, index) => (
             <Reveal key={item.role} delay={index * 0.08}>
-              <li className="relative">
-                <span className="absolute -left-[1.85rem] top-1.5 h-3 w-3 rounded-full border-2 border-background bg-accent md:-left-[2.85rem]" />
-                <p className="text-xs font-medium tracking-widest text-faint uppercase">
-                  {item.period}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold tracking-tight md:text-xl">
-                  {item.role}
-                </h3>
-                <p className="text-sm text-muted">
-                  {item.company} · {item.location}
-                </p>
-                <ul className="mt-3 space-y-2">
-                  {item.highlights.map((highlight) => (
+              <li className="grid gap-5 border-b border-line py-7 md:grid-cols-12 md:gap-8 md:py-9">
+                <div className="md:col-span-4">
+                  <span className="label-mono text-faint">
+                    {String(index + 1).padStart(2, "0")} — {item.period}
+                  </span>
+                  <h3 className="mt-3 text-lg font-medium tracking-tight md:text-xl">
+                    {item.role}
+                  </h3>
+                  <p className="mt-1.5 text-sm text-muted">
+                    {item.company} · {item.location}
+                  </p>
+                </div>
+
+                <ul className="md:col-span-8">
+                  {item.highlights.map((highlight, highlightIndex) => (
                     <li
                       key={highlight}
-                      className="flex gap-2.5 text-sm leading-relaxed text-muted"
+                      className="flex gap-4 border-b border-line py-3 text-sm leading-relaxed text-muted last:border-b-0 last:pb-0 first:pt-0"
                     >
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                      <span className="label-mono shrink-0 pt-0.5 text-faint">
+                        {String(highlightIndex + 1).padStart(2, "0")}
+                      </span>
                       {highlight}
                     </li>
                   ))}
@@ -148,19 +137,23 @@ export default function AboutPage() {
         </ol>
       </Section>
 
-      <Section className="border-t border-line bg-surface/30">
+      <Section className="border-t border-line">
         <SectionHeading
           label="Nilai kerja"
           title="Empat hal yang tidak saya tawar"
           description="Prinsip yang saya bawa ke setiap proyek, dari brief pertama sampai serah terima."
         />
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {profile.principles.map((principle, index) => (
             <Reveal key={principle.title} delay={index * 0.08}>
-              <div className="card h-full p-6">
-                <p className="text-xs font-medium text-accent">0{index + 1}</p>
-                <h3 className="mt-3 text-lg font-semibold tracking-tight">{principle.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
+              <div className="h-full bg-background p-5 md:p-6">
+                <p className="label-mono text-faint">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-4 text-base font-medium tracking-tight md:text-lg">
+                  {principle.title}
+                </h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-muted">
                   {principle.description}
                 </p>
               </div>
@@ -169,23 +162,24 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section>
+      <Section className="border-t border-line">
         <SectionHeading
           label="Keahlian"
           title="Perkakas sehari-hari"
           description="Teknologi yang saya pakai untuk membangun produk — dipilih karena matang, cepat, dan enak dirawat."
         />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {skills.map((group, index) => (
             <Reveal key={group.name} delay={index * 0.08}>
-              <div className="card h-full p-6">
-                <h3 className="text-sm font-semibold tracking-widest text-faint uppercase">
-                  {group.name}
-                </h3>
-                <ul className="mt-4 space-y-2.5">
+              <div className="border-t border-line pt-4">
+                <h3 className="label-mono text-faint">{group.name}</h3>
+                <ul className="mt-4">
                   {group.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2.5 text-sm text-muted">
-                      <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                    <li
+                      key={item}
+                      className="flex items-center gap-3 border-b border-line py-2.5 text-sm text-muted last:border-b-0"
+                    >
+                      <span aria-hidden="true" className="h-px w-2 shrink-0 bg-foreground/30" />
                       {item}
                     </li>
                   ))}

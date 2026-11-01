@@ -9,9 +9,9 @@ type CalloutProps = {
 };
 
 const styles = {
-  info: "border-sky-400/30 bg-sky-400/5 text-sky-100",
-  tip: "border-accent-2/30 bg-accent-2/5 text-emerald-50",
-  warning: "border-amber-400/30 bg-amber-400/5 text-amber-50",
+  info: "border-line bg-surface text-muted",
+  tip: "border-accent/40 bg-surface text-muted",
+  warning: "border-danger/40 bg-surface text-muted",
 };
 
 const icons = {
@@ -20,14 +20,24 @@ const icons = {
   warning: TriangleAlert,
 };
 
+const iconColors = {
+  info: "text-accent-2",
+  tip: "text-accent",
+  warning: "text-danger",
+};
+
 export default function Callout({ type = "info", title, children }: CalloutProps) {
   const Icon = icons[type];
 
   return (
-    <div className={cn("my-8 flex gap-3 rounded-2xl border p-4 md:p-5", styles[type])}>
-      <Icon size={18} className="mt-0.5 shrink-0" aria-hidden="true" />
+    <div className={cn("my-8 flex gap-3 border p-4 md:p-5", styles[type])}>
+      <Icon
+        size={16}
+        className={cn("mt-0.5 shrink-0", iconColors[type])}
+        aria-hidden="true"
+      />
       <div className="text-sm leading-relaxed [&_a]:underline [&_p]:m-0 [&_p+p]:mt-2">
-        {title && <p className="mb-1.5 font-semibold">{title}</p>}
+        {title && <p className="mb-1.5 font-medium text-foreground">{title}</p>}
         {children}
       </div>
     </div>

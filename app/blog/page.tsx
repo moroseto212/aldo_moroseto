@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/layout/PageHero";
-import PostCard from "@/components/blog/PostCard";
+import PostRow from "@/components/blog/PostRow";
 import CtaSection from "@/components/sections/CtaSection";
 import { getAllPosts } from "@/lib/posts";
 
@@ -23,12 +23,19 @@ export default async function BlogPage() {
 
       <section className="py-16 md:py-24">
         <div className="container-page">
+          <div className="flex items-baseline justify-between gap-4 border-b border-line pb-3">
+            <span className="label-mono text-faint">Arsip tulisan</span>
+            <span className="label-mono text-faint">
+              {String(posts.length).padStart(2, "0")} catatan
+            </span>
+          </div>
+
           {posts.length === 0 ? (
-            <p className="text-sm text-faint">Belum ada artikel. Silakan kembali lagi nanti.</p>
+            <p className="mt-8 text-sm text-faint">Belum ada artikel. Silakan kembali lagi nanti.</p>
           ) : (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div>
               {posts.map((post, index) => (
-                <PostCard key={post.slug} post={post} index={index} />
+                <PostRow key={post.slug} post={post} index={index} />
               ))}
             </div>
           )}

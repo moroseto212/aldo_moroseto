@@ -14,7 +14,7 @@ const serviceOptions = [
 ];
 
 const inputClasses =
-  "w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-foreground placeholder:text-faint transition-colors focus:border-accent focus:outline-none md:text-sm";
+  "w-full rounded-none border border-line bg-background px-4 py-3 text-base text-foreground placeholder:text-faint transition-colors focus:border-accent focus:outline-none md:text-sm";
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
@@ -49,12 +49,12 @@ export default function ContactForm() {
 
   if (sent) {
     return (
-      <div className="card flex flex-col items-start gap-4 p-8">
-        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-success/10 text-success">
-          <CheckCircle2 size={22} aria-hidden="true" />
+      <div className="flex flex-col items-start gap-5 border border-line bg-surface p-8">
+        <span className="flex h-9 w-9 items-center justify-center border border-line text-accent">
+          <CheckCircle2 size={18} aria-hidden="true" />
         </span>
         <div>
-          <h3 className="text-lg font-semibold tracking-tight">Email Anda siap dikirim</h3>
+          <h3 className="text-lg font-medium tracking-tight">Email Anda siap dikirim</h3>
           <p className="mt-2 text-sm leading-relaxed text-muted">
             Aplikasi email Anda telah dibuka dengan pesan yang sudah terisi. Tekan kirim di sana
             — saya akan membalas dalam {contact.responseTime.toLowerCase()}.
@@ -63,7 +63,7 @@ export default function ContactForm() {
         <button
           type="button"
           onClick={() => setSent(false)}
-          className="text-sm text-muted underline decoration-line underline-offset-4 transition-colors hover:text-foreground"
+          className="label-mono text-muted underline decoration-line underline-offset-4 transition-colors hover:text-foreground"
         >
           Tulis pesan lain
         </button>
@@ -72,10 +72,14 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="card min-w-0 p-6 md:p-8">
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="min-w-0 border border-line bg-surface p-6 md:p-8"
+    >
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <label htmlFor="name" className="text-xs font-medium text-muted">
+          <label htmlFor="name" className="label-mono text-faint">
             Nama
           </label>
           <input
@@ -95,7 +99,7 @@ export default function ContactForm() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-xs font-medium text-muted">
+          <label htmlFor="email" className="label-mono text-faint">
             Email
           </label>
           <input
@@ -115,7 +119,7 @@ export default function ContactForm() {
       </div>
 
       <div className="mt-5 flex flex-col gap-2">
-        <label htmlFor="service" className="text-xs font-medium text-muted">
+        <label htmlFor="service" className="label-mono text-faint">
           Layanan yang dibutuhkan
         </label>
         <select
@@ -133,7 +137,7 @@ export default function ContactForm() {
       </div>
 
       <div className="mt-5 flex flex-col gap-2">
-        <label htmlFor="message" className="text-xs font-medium text-muted">
+        <label htmlFor="message" className="label-mono text-faint">
           Pesan
         </label>
         <textarea
@@ -152,11 +156,11 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="group mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground text-sm font-medium text-background transition-colors hover:bg-white sm:w-auto sm:px-7"
+        className="group mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-none border border-foreground bg-foreground px-6 font-mono text-[11px] font-medium tracking-[0.14em] text-background uppercase transition-colors hover:bg-transparent hover:text-foreground sm:w-auto"
       >
         Kirim pesan
         <Send
-          size={14}
+          size={13}
           className="transition-transform duration-200 group-hover:translate-x-0.5"
           aria-hidden="true"
         />

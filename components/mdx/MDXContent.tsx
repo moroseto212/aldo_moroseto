@@ -19,9 +19,9 @@ function Heading({
     <Tag
       className={cn(
         "scroll-mt-24 tracking-tight text-balance",
-        level === 2 && "mt-12 mb-4 text-2xl font-semibold md:text-3xl",
-        level === 3 && "mt-9 mb-3 text-xl font-semibold md:text-2xl",
-        level === 4 && "mt-7 mb-2 text-lg font-semibold",
+        level === 2 && "mt-12 mb-4 border-t border-line pt-6 text-2xl font-medium md:text-3xl",
+        level === 3 && "mt-9 mb-3 text-xl font-medium md:text-2xl",
+        level === 4 && "mt-7 mb-2 text-lg font-medium",
         className,
       )}
     >
@@ -71,17 +71,17 @@ const components = {
     <ol className="my-5 list-decimal space-y-2.5 pl-5 marker:text-faint">{children}</ol>
   ),
   li: ({ children }: { children?: ReactNode }) => (
-    <li className="relative break-words pl-5 text-base leading-[1.8] text-muted before:absolute before:left-0 before:top-[0.75em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-accent before:content-[''] [&>strong]:text-foreground">
+    <li className="relative break-words pl-6 text-base leading-[1.8] text-muted before:absolute before:left-0 before:top-[0.95em] before:h-px before:w-3 before:bg-faint before:content-[''] [&>strong]:text-foreground">
       {children}
     </li>
   ),
   blockquote: ({ children }: { children?: ReactNode }) => (
-    <blockquote className="my-8 border-l-2 border-accent pl-5 text-lg leading-relaxed text-foreground italic md:text-xl">
+    <blockquote className="my-8 border-l border-accent pl-5 text-lg leading-relaxed text-foreground italic md:text-xl">
       {children}
     </blockquote>
   ),
   strong: ({ children }: { children?: ReactNode }) => (
-    <strong className="font-semibold text-foreground">{children}</strong>
+    <strong className="font-medium text-foreground">{children}</strong>
   ),
   em: ({ children }: { children?: ReactNode }) => <em className="italic">{children}</em>,
   hr: () => <hr className="my-10 border-line" />,
@@ -93,7 +93,7 @@ const components = {
     }
 
     return (
-      <code className="rounded-md border border-line bg-surface px-1.5 py-0.5 font-mono text-[0.875em] text-accent-2">
+      <code className="border border-line bg-surface px-1.5 py-0.5 font-mono text-[0.875em] text-accent-2">
         {children}
       </code>
     );
@@ -101,7 +101,7 @@ const components = {
   pre: ({ children, className }: { children?: ReactNode; className?: string }) => (
     <pre
       className={cn(
-        "my-7 overflow-x-auto rounded-2xl border border-line bg-surface p-4 font-mono text-[0.8125rem] leading-relaxed text-foreground md:p-5",
+        "my-7 overflow-x-auto border border-line bg-surface p-4 font-mono text-[0.8125rem] leading-relaxed text-foreground md:p-5",
         className,
       )}
     >
@@ -109,12 +109,12 @@ const components = {
     </pre>
   ),
   table: ({ children }: { children?: ReactNode }) => (
-    <div className="my-7 overflow-x-auto rounded-2xl border border-line">
+    <div className="my-7 overflow-x-auto border border-line">
       <table className="w-full border-collapse text-left text-sm">{children}</table>
     </div>
   ),
   th: ({ children }: { children?: ReactNode }) => (
-    <th className="border-b border-line bg-surface px-4 py-3 font-semibold text-foreground">
+    <th className="border-b border-line bg-surface px-4 py-3 font-mono text-[10px] font-medium tracking-[0.12em] text-foreground uppercase">
       {children}
     </th>
   ),

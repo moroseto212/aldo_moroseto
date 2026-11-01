@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock3, Mail, MapPin, MessageCircle, Globe } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import PageHero from "@/components/layout/PageHero";
 import Reveal from "@/components/motion/Reveal";
 import ContactForm from "@/components/sections/ContactForm";
@@ -13,28 +13,24 @@ export const metadata: Metadata = {
 
 const channels = [
   {
-    icon: Mail,
     label: "Email",
     value: contact.email,
     href: `mailto:${contact.email}`,
     note: "Untuk brief dan detail proyek",
   },
   {
-    icon: MessageCircle,
     label: "WhatsApp",
     value: contact.phone,
     href: `https://wa.me/${contact.phoneHref}`,
     note: "Untuk pertanyaan cepat",
   },
   {
-    icon: MapPin,
     label: "Lokasi",
     value: contact.location,
     href: null,
     note: `Zona waktu ${contact.timezone} · bisa remote ke mana saja`,
   },
   {
-    icon: Clock3,
     label: "Ketersediaan",
     value: contact.availability,
     href: null,
@@ -53,46 +49,59 @@ export default function ContactPage() {
 
       <section className="py-16 md:py-24">
         <div className="container-page">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
             <Reveal className="min-w-0 lg:col-span-7">
               <ContactForm />
             </Reveal>
 
-            <div className="lg:col-span-5">
-              <ul className="space-y-4">
+            <div className="min-w-0 lg:col-span-5">
+              <div className="flex items-baseline justify-between gap-4 border-b border-line pb-3">
+                <span className="label-mono text-faint">Saluran langsung</span>
+                <span className="label-mono text-faint">
+                  {String(channels.length).padStart(2, "0")} kanal
+                </span>
+              </div>
+
+              <ul>
                 {channels.map((channel, index) => {
-                  const Icon = channel.icon;
-                  const content = (
+                  const body = (
                     <>
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line bg-surface text-accent">
-                        <Icon size={17} aria-hidden="true" />
+                      <span className="label-mono shrink-0 pt-0.5 text-faint">
+                        {String(index + 1).padStart(2, "0")}
                       </span>
-                      <span className="min-w-0">
-                        <span className="block text-xs text-faint">{channel.label}</span>
-                        <span className="mt-1 block truncate text-sm font-medium text-foreground">
+                      <span className="min-w-0 flex-1">
+                        <span className="label-mono block text-faint">{channel.label}</span>
+                        <span className="mt-2 block font-mono text-sm break-all text-foreground">
                           {channel.value}
                         </span>
-                        <span className="mt-1 block text-xs leading-relaxed text-muted">
+                        <span className="mt-1.5 block text-xs leading-relaxed text-muted">
                           {channel.note}
                         </span>
                       </span>
+                      {channel.href && (
+                        <ArrowUpRight
+                          size={14}
+                          className="mt-0.5 shrink-0 text-faint transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground"
+                          aria-hidden="true"
+                        />
+                      )}
                     </>
                   );
 
                   return (
-                    <Reveal key={channel.label} delay={index * 0.08}>
-                      <li>
+                    <Reveal key={channel.label} delay={index * 0.06}>
+                      <li className="border-b border-line">
                         {channel.href ? (
                           <a
                             href={channel.href}
                             target={channel.href.startsWith("http") ? "_blank" : undefined}
                             rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                            className="card flex items-start gap-4 p-5 transition-all duration-300 hover:border-white/25 hover:bg-surface-2"
+                            className="group flex items-start gap-4 py-5 transition-colors hover:bg-surface/60 focus-visible:outline-none"
                           >
-                            {content}
+                            {body}
                           </a>
                         ) : (
-                          <div className="card flex items-start gap-4 p-5">{content}</div>
+                          <div className="flex items-start gap-4 py-5">{body}</div>
                         )}
                       </li>
                     </Reveal>
@@ -101,25 +110,23 @@ export default function ContactPage() {
               </ul>
 
               <Reveal delay={0.3}>
-                <div className="card mt-6 p-6">
-                  <p className="text-xs font-medium tracking-widest text-faint uppercase">
-                    Temukan saya di
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
+                <div className="border-t border-line pt-4">
+                  <p className="label-mono text-faint">Temukan saya di</p>
+                  <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
                     {socials.map((social) => (
-                      <a
-                        key={social.label}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded-full border border-line px-3.5 py-3 text-sm text-muted transition-colors hover:border-white/30 hover:text-foreground md:py-2"
-                      >
-                        {social.label}
-                      </a>
+                      <li key={social.label}>
+                        <a
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-[11px] tracking-[0.12em] text-muted uppercase underline-offset-4 transition-colors hover:text-foreground hover:underline"
+                        >
+                          {social.label}
+                        </a>
+                      </li>
                     ))}
-                  </div>
-                  <p className="mt-5 flex items-center gap-2 text-xs text-faint">
-                    <Globe size={13} aria-hidden="true" />
+                  </ul>
+                  <p className="mt-5 font-mono text-[11px] tracking-[0.08em] break-all text-faint">
                     {site.url.replace("https://", "")}
                   </p>
                 </div>

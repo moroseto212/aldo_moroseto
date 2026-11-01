@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, CalendarDays, Clock3 } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import MDXContent from "@/components/mdx/MDXContent";
 import Reveal from "@/components/motion/Reveal";
 import CtaSection from "@/components/sections/CtaSection";
@@ -56,19 +56,23 @@ export default function BlogPostPage({ params }: PageProps<"/blog/[slug]">) {
   return (
     <>
       <article>
-        <header className="relative overflow-hidden border-b border-line pb-14 pt-32 md:pb-16 md:pt-40">
-          <div className="bg-grid absolute inset-0 opacity-60" />
-          <div className="absolute -top-28 left-1/2 h-64 w-[34rem] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px]" />
-
-          <div className="container-page relative">
+        <header className="border-b border-line pb-14 pt-28 md:pb-20 md:pt-36">
+          <div className="container-page">
             <Reveal>
-              <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 py-2 text-sm text-muted transition-colors hover:text-foreground sm:py-0"
-              >
-                <ArrowLeft size={14} aria-hidden="true" />
-                Semua artikel
-              </Link>
+              <div className="flex items-baseline justify-between gap-6 border-b border-line pb-4">
+                <Link
+                  href="/blog"
+                  className="label-mono group inline-flex items-center gap-2 py-1 text-foreground transition-colors hover:text-muted"
+                >
+                  <ArrowLeft
+                    size={12}
+                    className="transition-transform duration-200 group-hover:-translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                  Semua artikel
+                </Link>
+                <span className="label-mono hidden text-faint sm:block">Blog — Arsip</span>
+              </div>
             </Reveal>
 
             <Suspense fallback={<PostHeadingSkeleton />}>
@@ -89,37 +93,40 @@ export default function BlogPostPage({ params }: PageProps<"/blog/[slug]">) {
 
 async function PostHeading({ params }: { params: PostParams }) {
   const post = await getPost(params);
+  const posts = await getAllPosts();
+  const position = posts.findIndex((item) => item.slug === post.slug) + 1;
 
   return (
     <>
-      <Reveal delay={0.1}>
-        <div className="mt-7 flex flex-wrap items-center gap-2">
-          <span className="rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted">
-            {post.category}
+      <Reveal delay={0.06}>
+        <div className="mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span className="label-mono text-faint">
+            {String(position).padStart(2, "0")} / {String(posts.length).padStart(2, "0")}
           </span>
-          {post.tags.map((tag) => (
-            <span key={tag} className="text-xs text-faint">
-              #{tag}
-            </span>
-          ))}
+          <span aria-hidden="true" className="text-faint">
+            —
+          </span>
+          <span className="label-mono text-muted">
+            {post.category}
+            {post.tags.length > 0 && ` · ${post.tags.join(" · ")}`}
+          </span>
         </div>
       </Reveal>
 
-      <h1 className="text-display-sm mt-6 max-w-4xl text-balance">{post.title}</h1>
+      <Reveal delay={0.12}>
+        <h1 className="text-display mt-6 max-w-4xl text-balance">{post.title}</h1>
+      </Reveal>
 
-      <Reveal delay={0.2}>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+      <Reveal delay={0.18}>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
           {post.description}
         </p>
-        <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-faint">
-          <span className="flex items-center gap-1.5">
-            <CalendarDays size={14} className="text-accent" aria-hidden="true" />
-            {formatDate(post.date)}
+        <div className="mt-7 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-t border-line pt-4 text-faint">
+          <span className="label-mono">{formatDate(post.date)}</span>
+          <span aria-hidden="true" className="text-faint">
+            ·
           </span>
-          <span className="flex items-center gap-1.5">
-            <Clock3 size={14} className="text-accent" aria-hidden="true" />
-            {post.readingTime}
-          </span>
+          <span className="label-mono">{post.readingTime}</span>
         </div>
       </Reveal>
     </>
@@ -135,25 +142,29 @@ async function PostBody({ params }: { params: PostParams }) {
   const next = index < posts.length - 1 ? posts[index + 1] : null;
 
   return (
-    <div className="container-page py-14 md:py-20">
+    <div className="container-page py-12 md:py-16">
       <Reveal className="mx-auto max-w-3xl">
-        <MDXContent source={post.content} />
+        <div className="border-t border-line pt-8 md:pt-10">
+          <MDXContent source={post.content} />
+        </div>
       </Reveal>
 
       <nav
-        className="mx-auto mt-14 grid max-w-3xl gap-4 border-t border-line pt-8 sm:grid-cols-2"
+        className="mx-auto mt-14 grid max-w-3xl gap-3 border-t border-line pt-8 sm:grid-cols-2 sm:gap-6"
         aria-label="Navigasi artikel"
       >
         {previous ? (
           <Link
             href={`/blog/${previous.slug}`}
-            className="group rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-white/25"
+            className="group border border-line p-5 transition-colors duration-300 hover:border-foreground/30 focus-visible:outline-none"
           >
-            <span className="flex items-center gap-2 text-xs text-faint">
-              <ArrowLeft size={12} aria-hidden="true" />
+            <span className="label-mono flex items-center gap-2 text-faint transition-colors group-hover:text-muted">
+              <ArrowLeft size={11} aria-hidden="true" />
               Artikel sebelumnya
             </span>
-            <p className="mt-2 text-sm font-semibold text-balance">{previous.title}</p>
+            <p className="mt-3 text-sm font-medium text-balance transition-colors group-hover:text-accent">
+              {previous.title}
+            </p>
           </Link>
         ) : (
           <span />
@@ -161,13 +172,15 @@ async function PostBody({ params }: { params: PostParams }) {
         {next && (
           <Link
             href={`/blog/${next.slug}`}
-            className="group rounded-2xl border border-line bg-surface p-5 text-right transition-colors hover:border-white/25 sm:col-start-2"
+            className="group border border-line p-5 text-right transition-colors duration-300 hover:border-foreground/30 focus-visible:outline-none sm:col-start-2"
           >
-            <span className="flex items-center justify-end gap-2 text-xs text-faint">
+            <span className="label-mono flex items-center justify-end gap-2 text-faint transition-colors group-hover:text-muted">
               Artikel berikutnya
-              <ArrowRight size={12} aria-hidden="true" />
+              <ArrowRight size={11} aria-hidden="true" />
             </span>
-            <p className="mt-2 text-sm font-semibold text-balance">{next.title}</p>
+            <p className="mt-3 text-sm font-medium text-balance transition-colors group-hover:text-accent">
+              {next.title}
+            </p>
           </Link>
         )}
       </nav>
@@ -178,38 +191,38 @@ async function PostBody({ params }: { params: PostParams }) {
 function PostHeadingSkeleton() {
   return (
     <div aria-hidden="true">
-      <div className="mt-7 flex flex-wrap items-center gap-2">
-        <span className="h-6 w-20 rounded-full bg-surface animate-pulse" />
-        <span className="h-4 w-16 rounded bg-surface animate-pulse" />
-        <span className="h-4 w-20 rounded bg-surface animate-pulse" />
+      <div className="mt-8 flex flex-wrap items-center gap-3">
+        <span className="h-3 w-16 bg-surface animate-pulse" />
+        <span className="h-3 w-40 bg-surface animate-pulse" />
       </div>
-      <div className="mt-6 h-12 w-full max-w-3xl rounded-2xl bg-surface animate-pulse" />
-      <div className="mt-3 h-12 w-2/5 max-w-xl rounded-2xl bg-surface animate-pulse" />
-      <div className="mt-5 h-5 w-full max-w-2xl rounded-lg bg-surface animate-pulse" />
-      <div className="mt-2.5 h-5 w-3/5 max-w-lg rounded-lg bg-surface animate-pulse" />
-      <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2">
-        <span className="h-4 w-28 rounded bg-surface animate-pulse" />
-        <span className="h-4 w-20 rounded bg-surface animate-pulse" />
-      </div>
+      <div className="mt-6 h-14 w-full max-w-3xl bg-surface animate-pulse" />
+      <div className="mt-3 h-14 w-3/5 max-w-2xl bg-surface animate-pulse" />
+      <div className="mt-6 h-5 w-full max-w-2xl bg-surface animate-pulse" />
+      <div className="mt-2.5 h-5 w-4/5 max-w-xl bg-surface animate-pulse" />
+      <div className="mt-7 h-4 w-48 border-t border-line bg-surface animate-pulse" />
     </div>
   );
 }
 
 function PostBodySkeleton() {
   return (
-    <div className="container-page py-14 md:py-20" aria-hidden="true">
-      <div className="mx-auto max-w-3xl space-y-4">
-        {[0, 1, 2, 3, 4, 5, 6, 7].map((line) => (
-          <div
-            key={line}
-            className={`h-4 rounded bg-surface animate-pulse ${line === 7 ? "w-1/3" : line % 4 === 3 ? "w-4/5" : "w-full"}`}
-          />
-        ))}
+    <div className="container-page py-12 md:py-16" aria-hidden="true">
+      <div className="mx-auto max-w-3xl">
+        <div className="border-t border-line pt-8 md:pt-10">
+          <div className="space-y-4">
+            {[0, 1, 2, 3, 4, 5, 6, 7].map((line) => (
+              <div
+                key={line}
+                className={`h-4 bg-surface animate-pulse ${line === 7 ? "w-1/3" : line % 4 === 3 ? "w-4/5" : "w-full"}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
-      <nav className="mx-auto mt-14 grid max-w-3xl gap-4 border-t border-line pt-8 sm:grid-cols-2">
-        <div className="h-24 rounded-2xl border border-line bg-surface animate-pulse" />
-        <div className="hidden h-24 rounded-2xl border border-line bg-surface animate-pulse sm:block sm:col-start-2" />
+      <nav className="mx-auto mt-14 grid max-w-3xl gap-3 border-t border-line pt-8 sm:grid-cols-2 sm:gap-6">
+        <div className="h-24 border border-line bg-surface animate-pulse" />
+        <div className="hidden h-24 border border-line bg-surface animate-pulse sm:col-start-2 sm:block" />
       </nav>
     </div>
   );
