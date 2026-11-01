@@ -6,6 +6,7 @@ import { contact } from "@/data/site";
 import { cn } from "@/lib/cn";
 
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
+type Status = "idle" | "submitting" | "error";
 
 const serviceOptions = [
   "Company Profile & Landing Page",
@@ -20,32 +21,76 @@ export default function ContactForm() {
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [service, setService] = useState(serviceOptions[0]);
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const form = new FormData(event.currentTarget);
     const name = String(form.get("name") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
-    const service = String(form.get("service") ?? "").trim();
+    const selectedService = String(form.get("service") ?? "").trim();
     const message = String(form.get("message") ?? "").trim();
+    const botcheck = form.get("botcheck");
 
     const nextErrors: Errors = {};
     if (name.length < 2) nextErrors.name = "Mohon isi nama Anda.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
       nextErrors.email = "Format email belum benar.";
-    if (message.length < 10) nextErrors.message = "Ceritakan sedikit lebih detail (min. 10 karakter).";
+    if (message.length < 10)
+      nextErrors.message = "Ceritakan sedikit lebih detail (min. 10 karakter).";
 
     setErrors(nextErrors);
+    setStatus("idle");
     if (Object.keys(nextErrors).length > 0) return;
 
-    const subject = encodeURIComponent(`Permintaan proyek — ${service} dari ${name}`);
-    const body = encodeURIComponent(
-      `Halo Aldo,\n\nNama: ${name}\nEmail: ${email}\nLayanan: ${service}\n\nPesan:\n${message}\n`,
-    );
+    // Honeypot: hanya bot yang mengisi ini. Pura-pura berhasil tanpa memanggil API.
+    if (botcheck) {
+      setSent(true);
+      return;
+    }
 
-    window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
-    setSent(true);
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (!accessKey) {
+      setStatus("error");
+      setErrorMessage(
+        "Form belum dikonfigurasi. Kirim pesan langsung lewat email berikut.",
+      );
+      return;
+    }
+
+    setStatus("submitting");
+    setErrorMessage("");
+
+    try {
+      // FormData dipakai (bukan JSON) agar tidak memicu preflight CORS.
+      const payload = new FormData();
+      payload.set("access_key", accessKey);
+      payload.set("subject", `Permintaan proyek — ${selectedService} dari ${name}`);
+      payload.set("from_name", "Website Aldo Moroseto");
+      payload.set("name", name);
+      payload.set("email", email);
+      payload.set("service", selectedService);
+      payload.set("message", message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: payload,
+      });
+      const result = (await response.json()) as { success?: boolean };
+
+      if (!response.ok || !result.success) throw new Error("Pengiriman ditolak.");
+
+      setStatus("idle");
+      setSent(true);
+    } catch {
+      setStatus("error");
+      setErrorMessage(
+        "Pesan belum terkirim. Periksa koneksi Anda lalu coba lagi, atau kirim langsung lewat email.",
+      );
+    }
   }
 
   if (sent) {
@@ -55,15 +100,17 @@ export default function ContactForm() {
           <CheckCircle2 size={18} aria-hidden="true" />
         </span>
         <div>
-          <h3 className="text-lg font-medium tracking-tight">Email Anda siap dikirim</h3>
+          <h3 className="text-lg font-medium tracking-tight">Pesan terkirim</h3>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            Aplikasi email Anda telah dibuka dengan pesan yang sudah terisi. Tekan kirim di sana
-            — saya akan membalas dalam {contact.responseTime.toLowerCase()}.
+            Terima kasih, pesan Anda sudah masuk ke email saya. {contact.responseTime}.
           </p>
         </div>
         <button
           type="button"
-          onClick={() => setSent(false)}
+          onClick={() => {
+            setSent(false);
+            setErrors({});
+          }}
           className="label-mono text-muted underline decoration-line underline-offset-4 transition-colors hover:text-foreground"
         >
           Tulis pesan lain
@@ -78,6 +125,15 @@ export default function ContactForm() {
       noValidate
       className="min-w-0 border border-line bg-surface p-6 md:p-8"
     >
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
           <label htmlFor="name" className="label-mono text-faint">
@@ -185,11 +241,27 @@ export default function ContactForm() {
         )}
       </div>
 
+      {status === "error" && (
+        <div
+          role="alert"
+          className="mt-6 border border-danger/40 bg-danger/5 px-4 py-3 text-xs leading-relaxed text-danger"
+        >
+          {errorMessage}{" "}
+          <a
+            href={`mailto:${contact.email}`}
+            className="underline decoration-danger/40 underline-offset-4"
+          >
+            {contact.email}
+          </a>
+        </div>
+      )}
+
       <button
         type="submit"
-        className="group mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-none border border-foreground bg-foreground px-6 font-mono text-[11px] font-medium tracking-[0.14em] text-background uppercase transition-colors hover:bg-transparent hover:text-foreground sm:w-auto"
+        disabled={status === "submitting"}
+        className="group mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-none border border-foreground bg-foreground px-6 font-mono text-[11px] font-medium tracking-[0.14em] text-background uppercase transition-colors hover:bg-transparent hover:text-foreground disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-foreground disabled:hover:text-background sm:w-auto"
       >
-        Kirim pesan
+        {status === "submitting" ? "Mengirim…" : "Kirim pesan"}
         <Send
           size={13}
           className="transition-transform duration-200 group-hover:translate-x-0.5"
@@ -198,8 +270,8 @@ export default function ContactForm() {
       </button>
 
       <p className="mt-4 text-xs leading-relaxed text-faint">
-        Pesan akan terbuka lewat aplikasi email Anda. Lebih nyaman chat? Gunakan WhatsApp
-        untuk balasan lebih cepat.
+        Pesan dikirim langsung ke email saya. Lebih nyaman chat? Gunakan WhatsApp untuk balasan
+        lebih cepat.
       </p>
     </form>
   );
