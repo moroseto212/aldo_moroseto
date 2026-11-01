@@ -19,6 +19,7 @@ const inputClasses =
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
+  const [service, setService] = useState(serviceOptions[0]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -118,23 +119,53 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="mt-5 flex flex-col gap-2">
-        <label htmlFor="service" className="label-mono text-faint">
-          Layanan yang dibutuhkan
-        </label>
-        <select
-          id="service"
-          name="service"
-          defaultValue={serviceOptions[0]}
-          className={cn(inputClasses, "min-w-0")}
-        >
-          {serviceOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </div>
+      <fieldset className="mt-5">
+        <legend className="label-mono text-faint">Layanan yang dibutuhkan</legend>
+        <div className="mt-2.5 grid gap-px border border-line bg-line">
+          {serviceOptions.map((option, index) => {
+            const isActive = service === option;
+
+            return (
+              <label
+                key={option}
+                className={cn(
+                  "flex cursor-pointer items-center gap-3 px-4 py-3.5 transition-colors has-[:focus-visible]:outline has-[:focus-visible]:-outline-offset-1 has-[:focus-visible]:outline-accent md:gap-4",
+                  isActive ? "bg-surface-2" : "bg-background hover:bg-surface",
+                )}
+              >
+                <input
+                  type="radio"
+                  name="service"
+                  value={option}
+                  checked={isActive}
+                  onChange={() => setService(option)}
+                  className="sr-only appearance-none rounded-none"
+                />
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "flex h-3.5 w-3.5 shrink-0 items-center justify-center border transition-colors",
+                    isActive ? "border-foreground" : "border-foreground/30",
+                  )}
+                >
+                  {isActive && <span className="h-1.5 w-1.5 bg-foreground" />}
+                </span>
+                <span className="label-mono w-6 shrink-0 text-faint">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span
+                  className={cn(
+                    "text-sm transition-colors",
+                    isActive ? "text-foreground" : "text-muted",
+                  )}
+                >
+                  {option}
+                </span>
+              </label>
+            );
+          })}
+        </div>
+      </fieldset>
 
       <div className="mt-5 flex flex-col gap-2">
         <label htmlFor="message" className="label-mono text-faint">
