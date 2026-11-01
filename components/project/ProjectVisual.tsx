@@ -73,7 +73,7 @@ export default function ProjectVisual({
                   height={project.coverAltHeight ?? 948}
                   sizes="(min-width: 1280px) 1216px, 100vw"
                   quality={95}
-                  className="block h-auto w-full rounded-xl border border-line"
+                  className="block h-auto w-full border border-line"
                 />
                 <figcaption className="mt-3 text-center text-xs text-faint">
                   Halaman admin — kelola konten &amp; data tanpa menyentuh kode

@@ -53,19 +53,25 @@ export default function ProjectDetailPage({ params }: PageProps<"/portofolio/[sl
   return (
     <>
       <article>
-        <header className="relative overflow-hidden border-b border-line pb-14 pt-32 md:pb-16 md:pt-40">
-          <div className="bg-grid absolute inset-0 opacity-60" />
-          <div className="absolute -top-24 left-1/2 h-64 w-[34rem] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px]" />
-
-          <div className="container-page relative">
+        <header className="border-b border-line pb-14 pt-28 md:pb-20 md:pt-36">
+          <div className="container-page">
             <Reveal>
-              <Link
-                href="/portofolio"
-                className="inline-flex items-center gap-2 py-2 text-sm text-muted transition-colors hover:text-foreground sm:py-0"
-              >
-                <ArrowLeft size={14} aria-hidden="true" />
-                Semua proyek
-              </Link>
+              <div className="flex items-baseline justify-between gap-6 border-b border-line pb-4">
+                <Link
+                  href="/portofolio"
+                  className="label-mono group inline-flex items-center gap-2 py-1 text-foreground transition-colors hover:text-muted"
+                >
+                  <ArrowLeft
+                    size={12}
+                    className="transition-transform duration-200 group-hover:-translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                  Semua proyek
+                </Link>
+                <span className="label-mono hidden text-faint sm:block">
+                  Portofolio — Arsip
+                </span>
+              </div>
             </Reveal>
 
             <Suspense fallback={<ProjectHeadingSkeleton />}>
@@ -86,26 +92,29 @@ export default function ProjectDetailPage({ params }: PageProps<"/portofolio/[sl
 
 async function ProjectHeading({ params }: { params: ProjectParams }) {
   const project = await getProject(params);
+  const position = projects.findIndex((item) => item.slug === project.slug) + 1;
 
   return (
     <>
-      <Reveal delay={0.1}>
-        <div className="mt-7 flex flex-wrap items-center gap-2">
-          <span className="rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted">
-            {project.categories[0]}
+      <Reveal delay={0.06}>
+        <div className="mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span className="label-mono text-faint">
+            {String(position).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
           </span>
-          <span className="rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted">
-            {project.year}
+          <span aria-hidden="true" className="text-faint">
+            —
           </span>
-          <span className="rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted">
-            {project.role}
+          <span className="label-mono text-muted">
+            {project.categories.join(" · ")} · {project.year} · {project.role}
           </span>
         </div>
       </Reveal>
 
-      <h1 className="text-display mt-6 max-w-4xl text-balance">{project.title}</h1>
+      <Reveal delay={0.12}>
+        <h1 className="text-display mt-6 max-w-4xl text-balance">{project.title}</h1>
+      </Reveal>
 
-      <Reveal delay={0.2}>
+      <Reveal delay={0.18}>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
           {project.summary}
         </p>
@@ -132,159 +141,166 @@ async function ProjectBody({ params }: { params: ProjectParams }) {
       </Reveal>
 
       <Reveal delay={0.1}>
-        <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4">
-          <div className="bg-surface p-5">
-            <dt className="text-xs text-faint">Klien</dt>
-            <dd className="mt-1.5 text-sm font-semibold">{project.client}</dd>
-          </div>
-          <div className="bg-surface p-5">
-            <dt className="text-xs text-faint">Peran</dt>
-            <dd className="mt-1.5 text-sm font-semibold">{project.role}</dd>
-          </div>
-          <div className="bg-surface p-5">
-            <dt className="text-xs text-faint">Tahun</dt>
-            <dd className="mt-1.5 text-sm font-semibold">{project.year}</dd>
-          </div>
-          <div className="bg-surface p-5">
-            <dt className="text-xs text-faint">Kategori</dt>
-            <dd className="mt-1.5 font-semibold">{project.categories.join(" · ")}</dd>
-          </div>
+        <dl className="mt-10 grid grid-cols-2 gap-px border border-line bg-line md:grid-cols-4">
+          {[
+            { label: "Klien", value: project.client },
+            { label: "Peran", value: project.role },
+            { label: "Tahun", value: String(project.year) },
+            { label: "Kategori", value: project.categories.join(" · ") },
+          ].map((item) => (
+            <div key={item.label} className="bg-surface px-5 py-4">
+              <dt className="label-mono text-faint">{item.label}</dt>
+              <dd className="mt-2 text-sm font-medium text-foreground">{item.value}</dd>
+            </div>
+          ))}
         </dl>
       </Reveal>
 
-      <div className="mt-14 grid gap-10 lg:grid-cols-12 lg:gap-14">
-        <Reveal className="lg:col-span-7">
-          <section>
-            <p className="text-xs font-medium tracking-widest text-faint uppercase">
-              Masalah
-            </p>
-            <p className="mt-4 text-base leading-[1.85] text-muted md:text-lg">
-              {project.problem}
-            </p>
-          </section>
-
-          <section className="mt-12">
-            <p className="text-xs font-medium tracking-widest text-faint uppercase">
-              Solusi
-            </p>
-            <p className="mt-4 text-base leading-[1.85] text-muted md:text-lg">
-              {project.solution}
-            </p>
-          </section>
-
-          <section className="mt-12">
-            <p className="text-xs font-medium tracking-widest text-faint uppercase">
-              Fitur utama
-            </p>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-              {project.features.map((feature) => (
-                <li
-                  key={feature}
-                  className="flex items-start gap-2.5 rounded-xl border border-line bg-surface p-3.5 text-sm leading-relaxed text-muted"
-                >
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </section>
-        </Reveal>
-
-        <Reveal className="lg:col-span-5" delay={0.15}>
-          <div className="lg:sticky lg:top-28 space-y-5">
-            <div className="card p-6">
-              <p className="text-xs font-medium tracking-widest text-faint uppercase">
-                Dampak
+      <div className="mt-14 grid gap-12 md:grid-cols-12 md:gap-8">
+        <div className="md:col-span-7">
+          <Reveal>
+            <section className="border-t border-line pt-5">
+              <p className="label-mono text-faint">Masalah</p>
+              <p className="mt-4 text-base leading-[1.85] text-muted md:text-lg">
+                {project.problem}
               </p>
-              <ul className="mt-5 space-y-5">
-                {project.results.map((result) => (
-                  <li key={result.label} className="border-b border-line pb-5 last:border-b-0 last:pb-0">
-                    <p className="text-3xl font-semibold tracking-tight text-gradient">
-                      {result.value}
-                    </p>
-                    <p className="mt-1 text-sm text-muted">{result.label}</p>
+            </section>
+          </Reveal>
+
+          <Reveal delay={0.06}>
+            <section className="mt-10 border-t border-line pt-5">
+              <p className="label-mono text-faint">Solusi</p>
+              <p className="mt-4 text-base leading-[1.85] text-muted md:text-lg">
+                {project.solution}
+              </p>
+            </section>
+          </Reveal>
+
+          <Reveal delay={0.12}>
+            <section className="mt-10 border-t border-line pt-5">
+              <p className="label-mono text-faint">Fitur utama</p>
+              <ul className="mt-5 grid gap-px bg-line sm:grid-cols-2">
+                {project.features.map((feature, featureIndex) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-3 bg-background p-4 text-sm leading-relaxed text-muted"
+                  >
+                    <span className="label-mono shrink-0 pt-0.5 text-faint">
+                      {String(featureIndex + 1).padStart(2, "0")}
+                    </span>
+                    <span>{feature}</span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
+          </Reveal>
+        </div>
 
-            <div className="card p-6">
-              <p className="text-xs font-medium tracking-widest text-faint uppercase">
-                Teknologi
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {project.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full border border-line bg-background/60 px-3 py-1.5 text-xs text-muted"
-                  >
-                    {tech}
-                  </span>
-                ))}
+        <aside className="md:col-span-4 md:col-start-9">
+          <div className="lg:sticky lg:top-24">
+            <Reveal delay={0.1}>
+              <div className="border border-line">
+                <p className="label-mono border-b border-line px-5 py-3 text-faint">Dampak</p>
+                <ul>
+                  {project.results.map((result) => (
+                    <li
+                      key={result.label}
+                      className="border-b border-line px-5 py-5 last:border-b-0"
+                    >
+                      <p className="font-mono text-2xl tracking-tight text-foreground md:text-3xl">
+                        {result.value}
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-muted">{result.label}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              {project.link && (
-                <div className="mt-5">
-                  <Button href={project.link} variant="secondary" size="sm" external>
-                    Kunjungi website
-                  </Button>
-                </div>
-              )}
-            </div>
+            </Reveal>
+
+            <Reveal delay={0.16}>
+              <div className="mt-5 border border-line">
+                <p className="label-mono border-b border-line px-5 py-3 text-faint">
+                  Teknologi
+                </p>
+                <ul className="flex flex-wrap gap-x-4 gap-y-2 px-5 py-4">
+                  {project.stack.map((tech) => (
+                    <li
+                      key={tech}
+                      className="font-mono text-[10px] tracking-[0.12em] text-muted uppercase"
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+                {project.link && (
+                  <div className="border-t border-line p-4">
+                    <Button href={project.link} variant="secondary" size="sm" external>
+                      Kunjungi website
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </Reveal>
 
             {project.admin && (
-              <div className="card p-6">
-                <p className="text-xs font-medium tracking-widest text-faint uppercase">
-                  Akses Admin
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-muted">
-                  Ingin mengakses bagian admin? Tambahkan{" "}
-                  <code className="rounded-md border border-line bg-background/60 px-1.5 py-0.5 font-mono text-xs text-foreground">
-                    {project.admin.path}
-                  </code>{" "}
-                  pada bagian URL.
-                </p>
-                <dl className="mt-4 space-y-3">
-                  <div>
-                    <dt className="text-xs text-faint">Email</dt>
-                    <dd className="mt-1 font-mono text-sm text-foreground break-all">
-                      {project.admin.email}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-xs text-faint">Password</dt>
-                    <dd className="mt-1 font-mono text-sm text-foreground break-all">
-                      {project.admin.password}
-                    </dd>
-                  </div>
-                </dl>
-              </div>
+              <Reveal delay={0.22}>
+                <div className="mt-5 border border-line">
+                  <p className="label-mono border-b border-line px-5 py-3 text-faint">
+                    Akses Admin
+                  </p>
+                  <p className="px-5 pt-4 text-sm leading-relaxed text-muted">
+                    Ingin mengakses bagian admin? Tambahkan{" "}
+                    <code className="border border-line px-1.5 py-0.5 font-mono text-xs text-foreground">
+                      {project.admin.path}
+                    </code>{" "}
+                    pada bagian URL.
+                  </p>
+                  <dl className="space-y-3 px-5 py-4">
+                    <div>
+                      <dt className="label-mono text-faint">Email</dt>
+                      <dd className="mt-1.5 font-mono text-sm break-all text-foreground">
+                        {project.admin.email}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="label-mono text-faint">Password</dt>
+                      <dd className="mt-1.5 font-mono text-sm break-all text-foreground">
+                        {project.admin.password}
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+              </Reveal>
             )}
           </div>
-        </Reveal>
+        </aside>
       </div>
 
-      <nav className="mt-16 grid gap-4 border-t border-line pt-8 sm:grid-cols-2" aria-label="Navigasi proyek">
+      <nav
+        className="mt-16 grid gap-3 border-t border-line pt-8 sm:grid-cols-2 sm:gap-6"
+        aria-label="Navigasi proyek"
+      >
         <Link
           href={`/portofolio/${previous.slug}`}
-          className="group rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-white/25"
+          className="group border border-line p-5 transition-colors duration-300 hover:border-foreground/30 focus-visible:outline-none"
         >
-          <span className="flex items-center gap-2 text-xs text-faint">
-            <ArrowLeft size={12} aria-hidden="true" />
+          <span className="label-mono flex items-center gap-2 text-faint transition-colors group-hover:text-muted">
+            <ArrowLeft size={11} aria-hidden="true" />
             Sebelumnya
           </span>
-          <p className="mt-2 text-sm font-semibold text-balance group-hover:text-foreground">
+          <p className="mt-3 text-sm font-medium text-balance transition-colors group-hover:text-accent">
             {previous.title}
           </p>
         </Link>
         <Link
           href={`/portofolio/${next.slug}`}
-          className="group rounded-2xl border border-line bg-surface p-5 text-right transition-colors hover:border-white/25 sm:col-start-2"
+          className="group border border-line p-5 text-right transition-colors duration-300 hover:border-foreground/30 focus-visible:outline-none sm:col-start-2"
         >
-          <span className="flex items-center justify-end gap-2 text-xs text-faint">
+          <span className="label-mono flex items-center justify-end gap-2 text-faint transition-colors group-hover:text-muted">
             Berikutnya
-            <ArrowRight size={12} aria-hidden="true" />
+            <ArrowRight size={11} aria-hidden="true" />
           </span>
-          <p className="mt-2 text-sm font-semibold text-balance group-hover:text-foreground">
+          <p className="mt-3 text-sm font-medium text-balance transition-colors group-hover:text-accent">
             {next.title}
           </p>
         </Link>
@@ -296,15 +312,14 @@ async function ProjectBody({ params }: { params: ProjectParams }) {
 function ProjectHeadingSkeleton() {
   return (
     <div aria-hidden="true">
-      <div className="mt-7 flex flex-wrap items-center gap-2">
-        <span className="h-6 w-24 rounded-full bg-surface animate-pulse" />
-        <span className="h-6 w-12 rounded-full bg-surface animate-pulse" />
-        <span className="h-6 w-20 rounded-full bg-surface animate-pulse" />
+      <div className="mt-8 flex flex-wrap items-center gap-3">
+        <span className="h-3 w-16 bg-surface animate-pulse" />
+        <span className="h-3 w-40 bg-surface animate-pulse" />
       </div>
-      <div className="mt-6 h-14 w-full max-w-3xl rounded-2xl bg-surface animate-pulse" />
-      <div className="mt-3 h-14 w-3/5 max-w-2xl rounded-2xl bg-surface animate-pulse" />
-      <div className="mt-6 h-5 w-full max-w-2xl rounded-lg bg-surface animate-pulse" />
-      <div className="mt-2.5 h-5 w-4/5 max-w-xl rounded-lg bg-surface animate-pulse" />
+      <div className="mt-6 h-14 w-full max-w-3xl bg-surface animate-pulse" />
+      <div className="mt-3 h-14 w-3/5 max-w-2xl bg-surface animate-pulse" />
+      <div className="mt-6 h-5 w-full max-w-2xl bg-surface animate-pulse" />
+      <div className="mt-2.5 h-5 w-4/5 max-w-xl bg-surface animate-pulse" />
     </div>
   );
 }
@@ -312,30 +327,30 @@ function ProjectHeadingSkeleton() {
 function ProjectBodySkeleton() {
   return (
     <div className="container-page py-12 md:py-16" aria-hidden="true">
-      <div className="aspect-[16/9] w-full rounded-3xl border border-line bg-surface animate-pulse" />
+      <div className="aspect-[16/9] w-full border border-line bg-surface animate-pulse" />
 
-      <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4">
+      <dl className="mt-10 grid grid-cols-2 gap-px border border-line bg-line md:grid-cols-4">
         {[0, 1, 2, 3].map((item) => (
-          <div key={item} className="bg-surface p-5">
-            <div className="h-3 w-12 rounded bg-line animate-pulse" />
-            <div className="mt-3 h-4 w-20 rounded bg-line animate-pulse" />
+          <div key={item} className="bg-surface px-5 py-4">
+            <div className="h-3 w-12 bg-line animate-pulse" />
+            <div className="mt-3 h-4 w-20 bg-line animate-pulse" />
           </div>
         ))}
       </dl>
 
-      <div className="mt-14 grid gap-10 lg:grid-cols-12 lg:gap-14">
-        <div className="space-y-4 lg:col-span-7">
+      <div className="mt-14 grid gap-12 md:grid-cols-12 md:gap-8">
+        <div className="space-y-4 md:col-span-7">
           {[0, 1, 2, 3, 4].map((line) => (
             <div
               key={line}
-              className={`h-4 rounded bg-surface animate-pulse ${line === 4 ? "w-1/2" : "w-full"}`}
+              className={`h-4 bg-surface animate-pulse ${line === 4 ? "w-1/2" : "w-full"}`}
             />
           ))}
         </div>
-        <div className="rounded-2xl border border-line bg-surface p-6 lg:col-span-5">
-          <div className="h-3 w-16 rounded bg-line animate-pulse" />
-          <div className="mt-6 h-8 w-24 rounded bg-line animate-pulse" />
-          <div className="mt-4 h-8 w-32 rounded bg-line animate-pulse" />
+        <div className="border border-line bg-surface p-6 md:col-span-4 md:col-start-9">
+          <div className="h-3 w-16 bg-line animate-pulse" />
+          <div className="mt-6 h-8 w-24 bg-line animate-pulse" />
+          <div className="mt-4 h-8 w-32 bg-line animate-pulse" />
         </div>
       </div>
     </div>

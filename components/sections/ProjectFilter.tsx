@@ -1,8 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import ProjectCard from "@/components/project/ProjectCard";
+import ProjectRow from "@/components/project/ProjectRow";
 import { projectCategories, projects, type ProjectCategory } from "@/data/projects";
 import { cn } from "@/lib/cn";
 
@@ -17,50 +16,47 @@ export default function ProjectFilter() {
 
   return (
     <>
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter kategori proyek">
-        {filters.map((filter) => (
-          <button
-            key={filter}
-            type="button"
-            role="tab"
-            aria-selected={active === filter}
-            onClick={() => setActive(filter)}
-            className={cn(
-              "rounded-full border px-4 py-3 text-sm transition-all duration-200 md:py-2",
-              active === filter
-                ? "border-transparent bg-foreground text-background"
-                : "border-line text-muted hover:border-white/30 hover:text-foreground",
-            )}
-          >
-            {filter}
-            <span className="ml-1.5 text-xs opacity-60">
-              {filter === "Semua"
-                ? projects.length
-                : projects.filter((project) => project.categories.includes(filter)).length}
-            </span>
-          </button>
-        ))}
+      <div
+        role="tablist"
+        aria-label="Filter kategori proyek"
+        className="flex flex-wrap items-baseline gap-x-5 border-y border-line py-2.5"
+      >
+        {filters.map((filter) => {
+          const count =
+            filter === "Semua"
+              ? projects.length
+              : projects.filter((project) => project.categories.includes(filter)).length;
+          const isActive = active === filter;
+
+          return (
+            <button
+              key={filter}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => setActive(filter)}
+              className={cn(
+                "label-mono relative flex items-baseline gap-1.5 py-2 transition-colors duration-200 focus-visible:outline-none",
+                isActive ? "text-foreground" : "text-faint hover:text-muted",
+              )}
+            >
+              {filter}
+              <span className="font-mono text-[9px] tracking-[0.08em] text-faint">
+                {String(count).padStart(2, "0")}
+              </span>
+              {isActive && (
+                <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-foreground" />
+              )}
+            </button>
+          );
+        })}
       </div>
 
-      <motion.div
-        layout
-        className="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-3"
-      >
-        <AnimatePresence mode="popLayout">
-          {filtered.map((project, index) => (
-            <motion.div
-              key={project.slug}
-              layout
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <ProjectCard project={project} index={index} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      <div className="mt-10 md:mt-14">
+        {filtered.map((project, index) => (
+          <ProjectRow key={project.slug} project={project} index={index} />
+        ))}
+      </div>
 
       {filtered.length === 0 && (
         <p className="mt-10 text-sm text-faint">Belum ada proyek di kategori ini.</p>
