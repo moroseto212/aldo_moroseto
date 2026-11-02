@@ -49,6 +49,7 @@ function MdxLink({ href = "", children }: { href?: string; children?: ReactNode 
   return (
     <Link
       href={href}
+      prefetch={false}
       className="text-foreground underline decoration-accent underline-offset-4 transition-colors hover:decoration-foreground"
     >
       {children}

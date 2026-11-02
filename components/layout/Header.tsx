@@ -54,7 +54,12 @@ export default function Header() {
             open ? "h-16" : scrolled ? "h-14" : "h-16",
           )}
         >
-          <Link href="/" className="group -m-1 flex items-center gap-3 p-1" aria-label="Kembali ke beranda">
+          <Link
+            href="/"
+            prefetch={false}
+            className="group -m-1 flex items-center gap-3 p-1"
+            aria-label="Kembali ke beranda"
+          >
             <Image
               src={profile.photo}
               alt={`Foto ${profile.name}`}
@@ -76,6 +81,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  prefetch={false}
                   className="label-mono group relative flex items-baseline gap-1.5 py-2"
                 >
                   <span aria-hidden="true" className="text-[9px] text-faint">
@@ -104,6 +110,7 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <Link
               href="/kontak"
+              prefetch={false}
               className="hidden h-10 items-center gap-2 border border-foreground bg-foreground px-4 font-mono text-[10px] font-medium tracking-[0.14em] text-background uppercase transition-colors hover:bg-transparent hover:text-foreground sm:inline-flex"
             >
               Hubungi saya
@@ -150,6 +157,7 @@ export default function Header() {
                 >
                   <Link
                     href={item.href}
+                    prefetch={false}
                     onClick={() => setOpen(false)}
                     className="group flex items-baseline gap-5 border-b border-line py-4"
                   >
@@ -169,6 +177,7 @@ export default function Header() {
             <div className="container-page flex flex-col gap-3 pb-[calc(2.5rem+env(safe-area-inset-bottom))]">
               <Link
                 href="/kontak"
+                prefetch={false}
                 onClick={() => setOpen(false)}
                 className="inline-flex h-12 items-center justify-center border border-foreground bg-foreground font-mono text-[11px] font-medium tracking-[0.14em] text-background uppercase"
               >

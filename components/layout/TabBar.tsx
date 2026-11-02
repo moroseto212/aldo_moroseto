@@ -38,6 +38,7 @@ export default function TabBar() {
             <li key={href} className="flex-1">
               <Link
                 href={href}
+                prefetch={false}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "relative flex h-full flex-col items-center justify-center gap-1 transition-colors duration-200",

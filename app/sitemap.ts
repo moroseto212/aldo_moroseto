@@ -4,6 +4,9 @@ import { projects } from "@/data/projects";
 import { getPostSlugs } from "@/lib/posts";
 import { getBuildDate } from "@/lib/time";
 
+// Wajib untuk `output: "export"`: route metadata harus dipaksa statis.
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = ["", "/tentang", "/layanan", "/portofolio", "/blog", "/kontak"];
   const postSlugs = await getPostSlugs();

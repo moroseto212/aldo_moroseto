@@ -77,7 +77,7 @@ export default function Button({
   }
 
   return (
-    <Link href={href} className={classes}>
+    <Link href={href} prefetch={false} className={classes}>
       {content}
     </Link>
   );

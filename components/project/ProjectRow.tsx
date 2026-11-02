@@ -18,6 +18,7 @@ export default function ProjectRow({ project, index, showSummary = true }: Proje
     <Reveal delay={Math.min(index * 0.08, 0.24)}>
       <Link
         href={`/portofolio/${project.slug}`}
+        prefetch={false}
         className={cn(
           "group grid gap-6 py-8 focus-visible:outline-none md:grid-cols-12 md:items-start md:gap-8 md:py-10",
           index > 0 && "border-t border-line",

@@ -14,6 +14,7 @@ export default function PostRow({ post, index = 0 }: PostRowProps) {
     <Reveal delay={Math.min(index * 0.05, 0.2)}>
       <Link
         href={`/blog/${post.slug}`}
+        prefetch={false}
         className="group grid gap-4 border-b border-line py-6 focus-visible:outline-none md:grid-cols-12 md:gap-8 md:py-7"
       >
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1.5 md:col-span-3 md:flex-col md:items-start md:gap-2">

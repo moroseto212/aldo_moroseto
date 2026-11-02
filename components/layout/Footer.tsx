@@ -30,6 +30,7 @@ export default async function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
+                    prefetch={false}
                     className="inline-block py-2.5 text-sm text-muted transition-colors hover:text-foreground sm:inline sm:py-0"
                   >
                     {item.label}

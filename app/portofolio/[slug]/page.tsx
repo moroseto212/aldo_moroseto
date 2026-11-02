@@ -47,7 +47,7 @@ async function getProject(params: ProjectParams) {
 
 /**
  * Shell bersama untuk semua link ke /portofolio/[slug] — tidak membaca `params`,
- * jadi bisa di-prefetch dan dipakai ulang oleh setiap navigasi (instant navigation).
+ * jadi shell-nya bisa dipakai ulang oleh setiap navigasi.
  */
 export default function ProjectDetailPage({ params }: PageProps<"/portofolio/[slug]">) {
   return (
@@ -59,6 +59,7 @@ export default function ProjectDetailPage({ params }: PageProps<"/portofolio/[sl
               <div className="flex items-baseline justify-between gap-6 border-b border-line pb-4">
                 <Link
                   href="/portofolio"
+                  prefetch={false}
                   className="label-mono group inline-flex items-center gap-2 py-1 text-foreground transition-colors hover:text-muted"
                 >
                   <ArrowLeft
@@ -282,6 +283,7 @@ async function ProjectBody({ params }: { params: ProjectParams }) {
       >
         <Link
           href={`/portofolio/${previous.slug}`}
+          prefetch={false}
           className="group border border-line p-5 transition-colors duration-300 hover:border-foreground/30 focus-visible:outline-none"
         >
           <span className="label-mono flex items-center gap-2 text-faint transition-colors group-hover:text-muted">
@@ -294,6 +296,7 @@ async function ProjectBody({ params }: { params: ProjectParams }) {
         </Link>
         <Link
           href={`/portofolio/${next.slug}`}
+          prefetch={false}
           className="group border border-line p-5 text-right transition-colors duration-300 hover:border-foreground/30 focus-visible:outline-none sm:col-start-2"
         >
           <span className="label-mono flex items-center justify-end gap-2 text-faint transition-colors group-hover:text-muted">

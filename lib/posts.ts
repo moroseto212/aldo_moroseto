@@ -35,8 +35,6 @@ function buildMeta(slug: string, raw: string): PostMeta {
 }
 
 export async function getAllPosts(): Promise<PostMeta[]> {
-  "use cache";
-
   if (!fs.existsSync(postsDirectory)) return [];
 
   const files = fs.readdirSync(postsDirectory).filter((file) => file.endsWith(".mdx"));
@@ -47,8 +45,6 @@ export async function getAllPosts(): Promise<PostMeta[]> {
 }
 
 export async function getPostSlugs(): Promise<string[]> {
-  "use cache";
-
   if (!fs.existsSync(postsDirectory)) return [];
 
   return fs
@@ -58,8 +54,6 @@ export async function getPostSlugs(): Promise<string[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  "use cache";
-
   const filePath = path.join(postsDirectory, `${slug}.mdx`);
 
   if (!fs.existsSync(filePath)) return null;

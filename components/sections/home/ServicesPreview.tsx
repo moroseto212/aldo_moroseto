@@ -24,6 +24,7 @@ export default function ServicesPreview() {
               <Reveal key={service.slug} delay={Math.min(index * 0.07, 0.2)}>
                 <Link
                   href={`/layanan#${service.slug}`}
+                  prefetch={false}
                   className="group grid gap-5 border-b border-line py-7 transition-colors duration-300 hover:bg-surface/60 focus-visible:outline-none md:grid-cols-12 md:items-start md:gap-8 md:py-9"
                 >
                   <span className="label-mono text-faint md:col-span-1 md:pt-1.5">

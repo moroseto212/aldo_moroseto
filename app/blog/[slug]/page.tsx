@@ -50,7 +50,7 @@ async function getPost(params: PostParams) {
 
 /**
  * Shell bersama untuk semua link ke /blog/[slug] — tidak membaca `params`,
- * jadi bisa di-prefetch dan dipakai ulang oleh setiap navigasi (instant navigation).
+ * jadi shell-nya bisa dipakai ulang oleh setiap navigasi.
  */
 export default function BlogPostPage({ params }: PageProps<"/blog/[slug]">) {
   return (
@@ -62,6 +62,7 @@ export default function BlogPostPage({ params }: PageProps<"/blog/[slug]">) {
               <div className="flex items-baseline justify-between gap-6 border-b border-line pb-4">
                 <Link
                   href="/blog"
+                  prefetch={false}
                   className="label-mono group inline-flex items-center gap-2 py-1 text-foreground transition-colors hover:text-muted"
                 >
                   <ArrowLeft
@@ -156,6 +157,7 @@ async function PostBody({ params }: { params: PostParams }) {
         {previous ? (
           <Link
             href={`/blog/${previous.slug}`}
+            prefetch={false}
             className="group border border-line p-5 transition-colors duration-300 hover:border-foreground/30 focus-visible:outline-none"
           >
             <span className="label-mono flex items-center gap-2 text-faint transition-colors group-hover:text-muted">
@@ -172,6 +174,7 @@ async function PostBody({ params }: { params: PostParams }) {
         {next && (
           <Link
             href={`/blog/${next.slug}`}
+            prefetch={false}
             className="group border border-line p-5 text-right transition-colors duration-300 hover:border-foreground/30 focus-visible:outline-none sm:col-start-2"
           >
             <span className="label-mono flex items-center justify-end gap-2 text-faint transition-colors group-hover:text-muted">
