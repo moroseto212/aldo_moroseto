@@ -41,6 +41,10 @@ jobs:
       - name: Setup Pages
         id: setup_pages
         uses: actions/configure-pages@v5
+        with:
+          # Sekaligus mengaktifkan Pages (build_type: workflow) bila belum aktif,
+          # jadi tidak perlu klik manual di Settings → Pages.
+          enablement: true
 
       - name: Cache Next.js
         uses: actions/cache@v4
