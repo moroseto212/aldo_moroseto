@@ -1,7 +1,8 @@
-import Image from "next/image";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
+import Magnetic from "@/components/motion/Magnetic";
+import HeroPortrait from "@/components/sections/home/HeroPortrait";
 import { profile } from "@/data/profile";
 import { formatNumber } from "@/lib/format";
 import { contact } from "@/data/site";
@@ -41,10 +42,14 @@ export default function Hero() {
 
             <Reveal delay={0.18}>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Button href="/portofolio">Lihat portofolio</Button>
-                <Button href="/kontak" variant="secondary">
-                  Mulai proyek
-                </Button>
+                <Magnetic>
+                  <Button href="/portofolio">Lihat portofolio</Button>
+                </Magnetic>
+                <Magnetic>
+                  <Button href="/kontak" variant="secondary">
+                    Mulai proyek
+                  </Button>
+                </Magnetic>
               </div>
             </Reveal>
 
@@ -59,22 +64,7 @@ export default function Hero() {
 
           <aside className="md:col-span-4 md:col-start-9">
             <Reveal delay={0.15} y={20}>
-              <figure>
-                <div className="relative aspect-[4/5] overflow-hidden border border-line">
-                  <Image
-                    src={profile.photo}
-                    alt={`Foto ${profile.name}`}
-                    fill
-                    priority
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover object-top"
-                  />
-                </div>
-                <figcaption className="mt-3 flex items-baseline justify-between gap-4 border-t border-line pt-3">
-                  <span className="label-mono text-foreground">{profile.name}</span>
-                  <span className="label-mono text-right text-faint">{profile.role}</span>
-                </figcaption>
-              </figure>
+              <HeroPortrait />
             </Reveal>
           </aside>
         </div>

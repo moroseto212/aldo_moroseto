@@ -25,7 +25,7 @@ export default function FeaturedProjects() {
 
         <div className="mt-10 md:mt-14">
           {featured.map((project, index) => (
-            <ProjectRow key={project.slug} project={project} index={index} />
+            <ProjectRow key={project.slug} project={project} index={index} tilt />
           ))}
         </div>
       </div>

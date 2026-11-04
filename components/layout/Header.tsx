@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import MotionToggle from "@/components/motion/MotionToggle";
 import { contact, navigation } from "@/data/site";
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/cn";
@@ -84,7 +85,10 @@ export default function Header() {
                   prefetch={false}
                   className="label-mono group relative flex items-baseline gap-1.5 py-2"
                 >
-                  <span aria-hidden="true" className="text-[9px] text-faint">
+                  <span
+                    aria-hidden="true"
+                    className="text-[9px] text-faint transition-transform duration-300 ease-out group-hover:-translate-y-0.5"
+                  >
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <span
@@ -95,11 +99,16 @@ export default function Header() {
                   >
                     {item.label}
                   </span>
-                  {active && (
+                  {active ? (
                     <motion.span
                       layoutId="nav-active"
                       className="absolute inset-x-0 -bottom-0.5 h-px bg-foreground"
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    />
+                  ) : (
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-foreground/60 transition-transform duration-300 ease-out group-hover:scale-x-100"
                     />
                   )}
                 </Link>
@@ -108,6 +117,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <MotionToggle />
             <Link
               href="/kontak"
               prefetch={false}

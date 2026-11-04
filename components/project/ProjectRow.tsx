@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import ProjectVisual from "@/components/project/ProjectVisual";
 import Reveal from "@/components/motion/Reveal";
+import Tilt from "@/components/motion/Tilt";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/cn";
 
@@ -9,9 +10,16 @@ type ProjectRowProps = {
   project: Project;
   index: number;
   showSummary?: boolean;
+  /** Aktifkan tilt kursor — hanya dipakai di beranda. */
+  tilt?: boolean;
 };
 
-export default function ProjectRow({ project, index, showSummary = true }: ProjectRowProps) {
+export default function ProjectRow({
+  project,
+  index,
+  showSummary = true,
+  tilt = false,
+}: ProjectRowProps) {
   const reversed = index % 2 === 1;
 
   return (
@@ -34,7 +42,13 @@ export default function ProjectRow({ project, index, showSummary = true }: Proje
             reversed ? "md:order-3" : "md:order-2",
           )}
         >
-          <ProjectVisual project={project} />
+          {tilt ? (
+            <Tilt>
+              <ProjectVisual project={project} />
+            </Tilt>
+          ) : (
+            <ProjectVisual project={project} />
+          )}
         </div>
 
         <div
