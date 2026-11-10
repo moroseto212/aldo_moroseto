@@ -15,7 +15,7 @@ const variants = {
   primary:
     "border border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground",
   secondary:
-    "border border-line text-foreground hover:border-foreground/40 hover:bg-white/[0.04]",
+    "border border-line text-foreground hover:border-foreground/40 hover:bg-foreground/[0.04]",
   ghost: "border border-transparent text-muted hover:text-foreground",
 };
 

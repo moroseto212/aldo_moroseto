@@ -7,9 +7,9 @@ import { profile } from "@/data/profile";
 import { useMotionTilt } from "@/lib/use-motion-tilt";
 
 /**
- * Foto hero yang bergerak halus mengikuti kursor (desktop) atau kemiringan HP
- * (mobile, setelah efek gerak diaktifkan). Caption bergerak berlawanan arah
- * dengan amplitudo lebih kecil supaya terbaca seperti lapisan tipis.
+ * Foto hero yang bergerak halus mengikuti kursor (desktop). Caption bergerak
+ * berlawanan arah dengan amplitudo lebih kecil supaya terbaca seperti lapisan
+ * tipis.
  */
 export default function HeroPortrait() {
   const frame = useRef<HTMLDivElement>(null);
@@ -17,7 +17,6 @@ export default function HeroPortrait() {
     translate: 5,
     rotate: 1.8,
     pointer: "viewport",
-    gyro: true,
   });
 
   const captionX = useTransform(x, (value) => value * -0.4);

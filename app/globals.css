@@ -1,23 +1,66 @@
 @import "tailwindcss";
 
-@theme {
-  /* Arsip teknis: grafit netral, teks bertone kertas, satu aksen bone. */
-  --color-background: #0b0b0c;
-  --color-foreground: #e8e6e3;
-  --color-surface: #101012;
-  --color-surface-2: #16161a;
-  --color-muted: #b0aca4;
-  --color-faint: #85817a;
-  --color-line: rgba(232, 230, 227, 0.12);
-  --color-accent: #d9d4c7;
-  --color-accent-2: #8d887c;
-  --color-success: #86b98c;
-  --color-danger: #d98c7f;
+/* Palet mentah per tema. Dipakai lewat @theme inline supaya utility Tailwind
+   (termasuk varian opacity seperti bg-background/90) ikut berubah saat tema
+   berganti, bukan terkunci ke nilai gelap saat build. */
+:root {
+  color-scheme: dark;
+  --palette-background: #0b0b0c;
+  --palette-foreground: #e8e6e3;
+  --palette-surface: #101012;
+  --palette-surface-2: #16161a;
+  --palette-muted: #b0aca4;
+  --palette-faint: #85817a;
+  --palette-line: rgba(232, 230, 227, 0.12);
+  --palette-accent: #d9d4c7;
+  --palette-accent-2: #8d887c;
+  --palette-success: #86b98c;
+  --palette-danger: #d98c7f;
+}
+
+/* Mode terang: kertas arsip. Tetap hairline, tanpa radius, tanpa glow. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --palette-background: #f4f1ea;
+  --palette-foreground: #171614;
+  --palette-surface: #faf8f3;
+  --palette-surface-2: #ece8df;
+  --palette-muted: #55514a;
+  --palette-faint: #6f6960;
+  --palette-line: rgba(23, 22, 20, 0.14);
+  --palette-accent: #6b5f4c;
+  --palette-accent-2: #6e6557;
+  --palette-success: #357043;
+  --palette-danger: #a8443a;
 }
 
 @theme inline {
+  --color-background: var(--palette-background);
+  --color-foreground: var(--palette-foreground);
+  --color-surface: var(--palette-surface);
+  --color-surface-2: var(--palette-surface-2);
+  --color-muted: var(--palette-muted);
+  --color-faint: var(--palette-faint);
+  --color-line: var(--palette-line);
+  --color-accent: var(--palette-accent);
+  --color-accent-2: var(--palette-accent-2);
+  --color-success: var(--palette-success);
+  --color-danger: var(--palette-danger);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Ikon tema: hanya satu yang terlihat, ditentukan atribut di <html>. */
+.theme-icon-moon {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon-sun {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon-moon {
+  display: block;
 }
 
 @layer base {
@@ -33,8 +76,8 @@
   }
 
   ::selection {
-    background-color: color-mix(in oklab, var(--color-accent) 45%, transparent);
-    color: #fff;
+    background-color: color-mix(in oklab, var(--color-accent) 60%, transparent);
+    color: var(--color-background);
   }
 
   :focus-visible {
@@ -60,6 +103,14 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: #45423d;
+  }
+
+  :root[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: #cfc8ba;
+  }
+
+  :root[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: #b3aa99;
   }
 }
 
@@ -161,6 +212,10 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+:root[data-theme="light"] .text-gradient {
+  background: linear-gradient(120deg, #1c1a17 0%, #4c463d 55%, #7a7060 100%);
 }
 
 .bg-grid {

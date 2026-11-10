@@ -6,7 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import MotionToggle from "@/components/motion/MotionToggle";
+import ThemeToggle from "@/components/layout/ThemeToggle";
 import { contact, navigation } from "@/data/site";
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/cn";
@@ -59,7 +59,7 @@ export default function Header() {
             href="/"
             prefetch={false}
             className="group -m-1 flex items-center gap-3 p-1"
-            aria-label="Kembali ke beranda"
+            aria-label="Aldo Moroseto — kembali ke beranda"
           >
             <Image
               src={profile.photo}
@@ -117,7 +117,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <MotionToggle />
+            <ThemeToggle />
             <Link
               href="/kontak"
               prefetch={false}
