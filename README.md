@@ -33,7 +33,7 @@ GitHub Actions setiap kali `master` di-push.
    - Value: access key dari [web3forms.com](https://web3forms.com)
 3. Push ke `master`, lalu pantau tab **Actions**.
 
-URL hasil deploy: `https://moroseto212.github.io/personal-website-aldo_moroseto/`
+URL hasil deploy: `https://moroseto212.github.io/aldo_moroseto/`
 
 Catatan:
 

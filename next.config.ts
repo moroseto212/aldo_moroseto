@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-// Project page GitHub Pages disajikan dari sub-folder (mis.
-// /personal-website-aldo_moroseto). Nilai ini diisi otomatis oleh
+// Project page GitHub Pages disajikan dari sub-folder (mis. /aldo_moroseto).
+// Nilai ini diisi otomatis oleh
 // actions/configure-pages saat deploy dan kosong saat dijalankan lokal.
 // Dipakai juga oleh loader gambar serta manifest, jadi harus berawalan
 // NEXT_PUBLIC_ agar ikut ter-inline ke bundle klien.
