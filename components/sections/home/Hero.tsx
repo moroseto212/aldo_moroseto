@@ -49,7 +49,7 @@ export default function Hero() {
             </Reveal>
 
             <Reveal delay={0.24}>
-              <ul className="mt-9 flex flex-wrap gap-x-4 gap-y-2 border-t border-line pt-5 font-mono text-[10px] tracking-[0.12em] text-faint uppercase">
+              <ul className="mt-9 flex flex-nowrap gap-x-2 border-t border-line pt-5 font-mono text-[9px] tracking-[0.06em] whitespace-nowrap text-faint uppercase md:flex-wrap md:gap-x-4 md:gap-y-2 md:text-[10px] md:tracking-[0.12em] md:whitespace-normal">
                 {skills.map((skill) => (
                   <li key={skill}>{skill}</li>
                 ))}

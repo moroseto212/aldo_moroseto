@@ -171,6 +171,65 @@
     height: 4px;
     width: 6px;
   }
+
+  /* Tool list marquee: on mobile the 12 tools run in one row instead of
+     wrapping. Two identical copies sit inside a track; translating the track
+     by exactly one copy width (-50%) makes the loop seamless. */
+  .marquee-viewport {
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+  }
+
+  .marquee-copy {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Let people stop the row to read it. */
+  @media (hover: hover) {
+    .marquee-viewport:hover .marquee-track {
+      animation-play-state: paused;
+    }
+  }
+
+  .marquee-viewport:active .marquee-track,
+  .marquee-viewport:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Reduced motion: no automatic movement, the row becomes manually
+     scrollable and the duplicate copy disappears. */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+      transform: none;
+    }
+
+    .marquee-viewport {
+      overflow-x: auto;
+    }
+
+    .marquee-viewport .marquee-copy[aria-hidden="true"] {
+      display: none;
+    }
+  }
 }
 
 .text-display {
