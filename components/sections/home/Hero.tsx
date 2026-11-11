@@ -1,7 +1,6 @@
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
-import Magnetic from "@/components/motion/Magnetic";
 import HeroPortrait from "@/components/sections/home/HeroPortrait";
 import { profile } from "@/data/profile";
 import { formatNumber } from "@/lib/format";
@@ -42,14 +41,10 @@ export default function Hero() {
 
             <Reveal delay={0.18}>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Magnetic>
-                  <Button href="/portofolio">Lihat portofolio</Button>
-                </Magnetic>
-                <Magnetic>
-                  <Button href="/kontak" variant="secondary">
-                    Mulai proyek
-                  </Button>
-                </Magnetic>
+                <Button href="/portofolio">Lihat portofolio</Button>
+                <Button href="/kontak" variant="secondary">
+                  Mulai proyek
+                </Button>
               </div>
             </Reveal>
 
