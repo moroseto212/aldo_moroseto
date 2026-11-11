@@ -71,10 +71,10 @@ export const projects: Project[] = [
       { value: "Playable", label: "langsung bisa dimainkan" },
     ],
     accent: "lime",
-    cover: "/burungin-pic.jpeg",
+    cover: "/burungin-cover.jpeg",
     coverFull: true,
-    coverWidth: 896,
-    coverHeight: 1183,
+    coverWidth: 1312,
+    coverHeight: 816,
     link: "https://moroseto212.github.io/Flappy-Bird/",
   },
   {
