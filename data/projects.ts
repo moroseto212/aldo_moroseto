@@ -187,6 +187,39 @@ export const projects: Project[] = [
     coverHeight: 6637,
     link: "https://noxen-three.vercel.app",
   },
+  {
+    slug: "periodiklab",
+    title: "PeriodikLab — Tabel Periodik & Laboratorium Kimia",
+    client: "Personal Project",
+    categories: ["Web App"],
+    year: 2026,
+    role: "Developer",
+    stack: ["Vite", "React", "Zustand", "Zod"],
+    summary:
+      "Tabel periodik interaktif berbahasa Indonesia: 118 unsur, laboratorium reaksi virtual, dan tantangan kimia — tanpa akun dan tanpa backend.",
+    problem:
+      "Belajar kimia butuh data unsur, ruang mencoba reaksi, dan latihan soal sekaligus. Tanpa satu alat terpadu, prosesnya berpindah-pindah dan sulit diulang.",
+    solution:
+      "PeriodikLab menyatukan 118 unsur, 128 reaksi, dan 40 soal dalam satu aplikasi React. Tabel bisa dicari dan difilter, tiap unsur punya panel sifat dan tren, laboratorium mencocokkan rasio atom dengan kondisi reaksi, dan tantangan memberi umpan balik langsung. Semua progres tersimpan lokal di perangkat.",
+    features: [
+      "Tabel 118 unsur dengan pencarian Ctrl K dan 10 filter kategori",
+      "Panel detail unsur: sifat, kulit elektron, tren, dan peringatan bahaya",
+      "Laboratorium reaksi: susun atom, atur kondisi, bagikan eksperimen lewat tautan",
+      "Tantangan tiga tingkat dengan umpan balik dan pembahasan tiap soal",
+      "PWA dengan tema gelap/terang dan progres tersimpan lokal tanpa akun",
+    ],
+    results: [
+      { value: "118", label: "unsur & 120 spesies" },
+      { value: "128", label: "reaksi terkurasi" },
+      { value: "40", label: "soal tantangan" },
+    ],
+    accent: "violet",
+    cover: "/periodiklab-pic.png",
+    coverFull: true,
+    coverWidth: 1918,
+    coverHeight: 946,
+    link: "https://table-periodic-moroseto.vercel.app/",
+  },
 ];
 
 export const testimonials = [
