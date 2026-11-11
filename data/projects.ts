@@ -24,6 +24,11 @@ export type Project = {
   /** screenshot halaman admin — dipakai di kartu daftar/beranda (bergantian saat hover) */
   coverAlt?: string;
   coverFull?: boolean;
+  /**
+   * Cara menampilkan cover di kartu daftar. `blur` menampilkan gambar utuh
+   * (object-contain) di atas latar gambar yang sama, diperbesar dan diblur.
+   */
+  coverFit?: "blur";
   /** dimensi asli cover & coverAlt (agar rasio benar di halaman detail) */
   coverWidth?: number;
   coverHeight?: number;
@@ -216,6 +221,7 @@ export const projects: Project[] = [
     accent: "violet",
     cover: "/periodiklab-pic.png",
     coverFull: true,
+    coverFit: "blur",
     coverWidth: 1918,
     coverHeight: 946,
     link: "https://table-periodic-moroseto.vercel.app/",

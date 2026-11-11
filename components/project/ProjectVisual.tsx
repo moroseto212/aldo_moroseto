@@ -84,18 +84,42 @@ export default function ProjectVisual({
           </>
         ) : (
           <>
-            <Image
-              src={project.cover}
-              alt={`Tampilan ${project.title}`}
-              fill
-              sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
-              quality={95}
-              className={cn(
-                "object-cover object-top",
-                project.coverAlt &&
-                  "transition-opacity duration-500 group-hover:opacity-0 group-focus-visible:opacity-0",
-              )}
-            />
+            {project.coverFit === "blur" ? (
+              <>
+                {/* Latar dekoratif: gambar yang sama, diperbesar agar tepi blur
+                    tidak menyisakan garis di dalam bingkai. */}
+                <Image
+                  src={project.cover}
+                  alt=""
+                  aria-hidden="true"
+                  fill
+                  sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
+                  quality={95}
+                  className="scale-110 object-cover blur-2xl"
+                />
+                <Image
+                  src={project.cover}
+                  alt={`Tampilan ${project.title}`}
+                  fill
+                  sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
+                  quality={95}
+                  className="object-contain"
+                />
+              </>
+            ) : (
+              <Image
+                src={project.cover}
+                alt={`Tampilan ${project.title}`}
+                fill
+                sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
+                quality={95}
+                className={cn(
+                  "object-cover object-top",
+                  project.coverAlt &&
+                    "transition-opacity duration-500 group-hover:opacity-0 group-focus-visible:opacity-0",
+                )}
+              />
+            )}
             {project.coverAlt && (
               <Image
                 src={project.coverAlt}
