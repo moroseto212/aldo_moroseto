@@ -25,10 +25,10 @@ export type Project = {
   coverAlt?: string;
   coverFull?: boolean;
   /**
-   * Cara menampilkan cover di kartu daftar. `blur` menampilkan gambar utuh
-   * (object-contain) di atas latar gambar yang sama, diperbesar dan diblur.
+   * Bingkai kartu daftar mengikuti rasio asli cover, bukan 16:10, sehingga
+   * gambar tampil utuh tanpa crop dan tanpa ruang kosong.
    */
-  coverFit?: "blur";
+  coverFit?: "native";
   /** dimensi asli cover & coverAlt (agar rasio benar di halaman detail) */
   coverWidth?: number;
   coverHeight?: number;
@@ -219,9 +219,9 @@ export const projects: Project[] = [
       { value: "40", label: "soal tantangan" },
     ],
     accent: "violet",
-    cover: "/periodiklab-pic.png",
+    cover: "/periodiklab-pic-2.png",
     coverFull: true,
-    coverFit: "blur",
+    coverFit: "native",
     coverWidth: 1918,
     coverHeight: 946,
     link: "https://table-periodic-moroseto.vercel.app/",

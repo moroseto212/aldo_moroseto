@@ -38,13 +38,26 @@ export default function ProjectVisual({
   const nativeCover =
     grows && project.coverWidth !== undefined && project.coverWidth < 1200;
 
+  // Kartu dengan coverFit "native" memakai rasio asli cover, bukan 16:10,
+  // sehingga gambar tampil penuh tanpa crop dan tanpa ruang kosong.
+  const nativeFrame =
+    !grows &&
+    project.coverFit === "native" &&
+    project.coverWidth !== undefined &&
+    project.coverHeight !== undefined;
+
   return (
     <div
       className={cn(
         "relative overflow-hidden border border-line",
-        grows ? "" : "aspect-[16/10]",
+        grows || nativeFrame ? "" : "aspect-[16/10]",
         className,
       )}
+      style={
+        nativeFrame
+          ? { aspectRatio: `${project.coverWidth} / ${project.coverHeight}` }
+          : undefined
+      }
     >
       {project.cover ? (
         grows ? (
@@ -84,42 +97,18 @@ export default function ProjectVisual({
           </>
         ) : (
           <>
-            {project.coverFit === "blur" ? (
-              <>
-                {/* Latar dekoratif: gambar yang sama, diperbesar agar tepi blur
-                    tidak menyisakan garis di dalam bingkai. */}
-                <Image
-                  src={project.cover}
-                  alt=""
-                  aria-hidden="true"
-                  fill
-                  sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
-                  quality={95}
-                  className="scale-110 object-cover blur-2xl"
-                />
-                <Image
-                  src={project.cover}
-                  alt={`Tampilan ${project.title}`}
-                  fill
-                  sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
-                  quality={95}
-                  className="object-contain"
-                />
-              </>
-            ) : (
-              <Image
-                src={project.cover}
-                alt={`Tampilan ${project.title}`}
-                fill
-                sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
-                quality={95}
-                className={cn(
-                  "object-cover object-top",
-                  project.coverAlt &&
-                    "transition-opacity duration-500 group-hover:opacity-0 group-focus-visible:opacity-0",
-                )}
-              />
-            )}
+            <Image
+              src={project.cover}
+              alt={`Tampilan ${project.title}`}
+              fill
+              sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
+              quality={95}
+              className={cn(
+                "object-cover object-top",
+                project.coverAlt &&
+                  "transition-opacity duration-500 group-hover:opacity-0 group-focus-visible:opacity-0",
+              )}
+            />
             {project.coverAlt && (
               <Image
                 src={project.coverAlt}
