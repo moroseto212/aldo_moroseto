@@ -19,7 +19,7 @@ export default function ProjectFilter() {
       <div
         role="tablist"
         aria-label="Filter kategori proyek"
-        className="flex flex-wrap items-baseline gap-x-5 border-y border-line py-2.5"
+        className="grid grid-cols-2 gap-x-5 border-t border-line md:flex md:flex-wrap md:items-baseline md:gap-x-5 md:border-y md:py-2.5"
       >
         {filters.map((filter) => {
           const count =
@@ -36,8 +36,12 @@ export default function ProjectFilter() {
               aria-selected={isActive}
               onClick={() => setActive(filter)}
               className={cn(
-                "label-mono relative flex items-baseline gap-1.5 py-2 transition-colors duration-200 focus-visible:outline-none",
-                isActive ? "text-foreground" : "text-faint hover:text-muted",
+                "label-mono relative flex min-h-11 w-full items-center justify-between gap-1.5 border-b py-3 text-[10px] tracking-[0.12em] transition-colors duration-200 focus-visible:outline-none",
+                "md:min-h-0 md:w-auto md:items-baseline md:justify-start md:border-0 md:py-2 md:text-[0.6875rem] md:tracking-[0.16em]",
+                filter === "Semua" && "col-span-2",
+                isActive
+                  ? "border-foreground text-foreground"
+                  : "border-line text-faint hover:text-muted",
               )}
             >
               {filter}
@@ -45,7 +49,10 @@ export default function ProjectFilter() {
                 {String(count).padStart(2, "0")}
               </span>
               {isActive && (
-                <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-foreground" />
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 bottom-0 hidden h-px bg-foreground md:block"
+                />
               )}
             </button>
           );
