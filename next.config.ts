@@ -23,6 +23,8 @@ const nextConfig: NextConfig = {
     // basePath lalu menyajikan berkas asli dari /public.
     loader: "custom",
     loaderFile: "./lib/image-loader.ts",
+    // Kartu proyek meminta quality 95; daftarkan supaya tidak diperingatkan.
+    qualities: [75, 95],
   },
   turbopack: {
     rules: {

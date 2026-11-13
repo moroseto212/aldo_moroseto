@@ -73,6 +73,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {/* Favicon sengaja dihapus; ikon kosong ini mencegah browser meminta
+            /favicon.ico yang tidak ada (404) tanpa memunculkan ikon baru. */}
+        <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" />
       </head>
       <body id="top" className="flex min-h-full flex-col">
         <MotionProvider>
