@@ -2,13 +2,11 @@
 
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } from "motion/react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import { contact, navigation } from "@/data/site";
-import { profile } from "@/data/profile";
 import { cn } from "@/lib/cn";
 
 export default function Header() {
@@ -61,15 +59,7 @@ export default function Header() {
             className="group -m-1 flex items-center gap-3 p-1"
             aria-label="Aldo Moroseto — kembali ke beranda"
           >
-            <Image
-              src={profile.photo}
-              alt={`Foto ${profile.name}`}
-              width={72}
-              height={72}
-              priority
-              className="h-8 w-8 border border-line object-cover transition-colors group-hover:border-foreground/40"
-            />
-            <span className="label-mono hidden text-foreground transition-colors group-hover:text-muted sm:block">
+            <span className="label-mono text-foreground transition-colors group-hover:text-muted">
               Aldo Moroseto
             </span>
           </Link>
