@@ -10,7 +10,7 @@ export default function HeroPortrait() {
     <figure>
       <div className="relative aspect-[4/5] overflow-hidden border border-line">
         <Image
-          src={profile.photo}
+          src={profile.heroPhoto}
           alt={`Foto ${profile.name}`}
           fill
           priority
