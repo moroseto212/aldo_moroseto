@@ -34,6 +34,6 @@ export const contact = {
   phoneHref: "6281413597455",
   location: "Bekasi, Jawa Barat, Indonesia",
   timezone: "GMT+7 (WIB)",
-  availability: "Tersedia untuk proyek freelance mulai November 2026",
+  availability: "Tersedia untuk proyek freelance",
   responseTime: "Biasanya membalas dalam 1×24 jam",
 };

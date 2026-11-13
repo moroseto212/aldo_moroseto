@@ -1,3 +1,5 @@
+import { projects } from "./projects";
+
 export const profile = {
   name: "Aldo Moroseto",
   shortName: "Aldo",
@@ -92,9 +94,27 @@ export type Stat = {
   description: string;
 };
 
+// Jumlah klien nyata (proyek personal tidak dihitung) — dihitung dari data
+// proyek supaya angka di beranda tidak perlu diperbarui manual.
+const clientCount = new Set(
+  projects
+    .filter((project) => project.client !== "Personal Project")
+    .map((project) => project.client),
+).size;
+
 export const stats: Stat[] = [
-  { value: 4, suffix: "", label: "Proyek selesai", description: "Untuk klien lokal & regional" },
-  { value: 3.5, suffix: " thn", label: "Pengalaman", description: "Industri web dan produk digital" },
-  { value: 96, suffix: "%", label: "Klien puas", description: "Dari survei akhir proyek" },
+  {
+    value: projects.length,
+    suffix: "",
+    label: "Proyek selesai",
+    description: "Proyek klien & personal yang tuntas",
+  },
+  {
+    value: profile.yearsOfExperience,
+    suffix: " thn",
+    label: "Pengalaman",
+    description: "Industri web dan produk digital",
+  },
+  { value: clientCount, suffix: "", label: "Klien", description: "Brand & bisnis yang bekerja sama" },
   { value: 1, suffix: " s", label: "Target LCP", description: "Standar performa di tiap proyek" },
 ];
