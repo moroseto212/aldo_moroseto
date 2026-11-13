@@ -8,7 +8,7 @@ import { profile } from "@/data/profile";
 export default function HeroPortrait() {
   return (
     <figure>
-      <div className="relative aspect-[4/5] overflow-hidden border border-line">
+      <div className="relative aspect-[4/5] overflow-hidden">
         <Image
           src={profile.heroPhoto}
           alt={`Foto ${profile.name}`}

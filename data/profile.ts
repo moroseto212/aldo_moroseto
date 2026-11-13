@@ -3,7 +3,7 @@ export const profile = {
   shortName: "Aldo",
   initials: "AM",
   photo: "/foto-profil.jpg",
-  heroPhoto: "/foto-profil-hero.jpg",
+  heroPhoto: "/foto-profil-hero.png",
   role: "Website Developer",
   location: "Bekasi, Indonesia",
   yearsOfExperience: 3.5,
