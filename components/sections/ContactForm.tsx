@@ -17,6 +17,11 @@ const serviceOptions = [
 const inputClasses =
   "w-full rounded-none border border-line bg-background px-4 py-3 text-base text-foreground placeholder:text-faint transition-colors focus:border-accent focus:outline-none md:text-sm";
 
+// Access key Web3Forms memang dirancang untuk dipakai di sisi klien (bukan
+// rahasia). Env var tetap diprioritaskan; fallback ini menjaga form tetap
+// berfungsi bila env belum diisi di hosting.
+const FALLBACK_ACCESS_KEY = "ccb7c1d0-a834-421f-ae04-f453767ba18a";
+
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
@@ -51,14 +56,8 @@ export default function ContactForm() {
       return;
     }
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-    if (!accessKey) {
-      setStatus("error");
-      setErrorMessage(
-        "Form belum dikonfigurasi. Kirim pesan langsung lewat email berikut.",
-      );
-      return;
-    }
+    const accessKey =
+      process.env.NEXT_PUBLIC_WEB3FORMS_KEY || FALLBACK_ACCESS_KEY;
 
     setStatus("submitting");
     setErrorMessage("");

@@ -51,7 +51,9 @@ Catatan:
   (`lib/image-loader.ts`) yang menyajikan berkas asli dari `public/`.
   Jaga ukuran berkas di `public/` tetap kecil.
 - Form kontak tetap berfungsi karena dikirim langsung dari browser pengunjung
-  ke Web3Forms. Access key harus tersedia saat build, bukan saat runtime.
+  ke Web3Forms. Access key dibaca saat build dari
+  `NEXT_PUBLIC_WEB3FORMS_KEY`; bila env itu kosong, form memakai fallback key
+  publik di `components/sections/ContactForm.tsx`.
 - Semua `<Link>` memakai `prefetch={false}`: prefetch RSC butuh server, jadi di
   static export permintaannya hanya menghasilkan 404.
 
