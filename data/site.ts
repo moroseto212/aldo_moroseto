@@ -9,7 +9,7 @@ export const site = {
   tagline: "Website Developer",
   description:
     "Website portfolio Aldo Moroseto — website developer yang membangun website cepat, responsif, dan bermakna.",
-  url: "https://moroseto212.github.io/aldo_moroseto",
+  url: "https://aldomoroseto.my.id",
   locale: "id_ID",
   author: "Aldo Moroseto",
 };

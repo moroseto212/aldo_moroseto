@@ -20,27 +20,36 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Deploy ke GitHub Pages
+## Deploy ke Vercel
 
 Situs ini di-export statis (`output: "export"`) dan diterbitkan otomatis oleh
-GitHub Actions setiap kali `master` di-push.
+Vercel setiap kali `master` di-push.
 
-**Sekali saja, di pengaturan repo:**
+Alamat resmi: `https://aldomoroseto.my.id`
 
-1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
-2. **Settings → Secrets and variables → Actions → New repository secret**
+**Sekali saja, di dashboard Vercel:**
+
+1. **Add New → Project → Import** repo GitHub ini.
+2. **Settings → Environment Variables → New:**
    - Name: `NEXT_PUBLIC_WEB3FORMS_KEY`
    - Value: access key dari [web3forms.com](https://web3forms.com)
-3. Push ke `master`, lalu pantau tab **Actions**.
+3. **Settings → Domains → Add** `aldomoroseto.my.id` (tambahkan juga
+   `www.aldomoroseto.my.id` dengan redirect ke domain utama).
+4. Salin nilai DNS yang ditampilkan Vercel ke panel Domainesia:
+   `A` untuk apex dan `CNAME` untuk `www`. Jangan ubah record MX/TXT email.
 
-URL hasil deploy: `https://moroseto212.github.io/aldo_moroseto/`
+**Sekali saja, matikan hosting lama:**
+
+5. Repo GitHub → **Settings → Pages → Source: None / Unpublish site**.
+   Setelah ini `moroseto212.github.io/aldo_moroseto` tidak lagi aktif.
 
 Catatan:
 
-- `NEXT_PUBLIC_BASE_PATH` diisi otomatis oleh `actions/configure-pages`, jadi
-  tidak perlu diatur manual. Di lokal nilainya kosong dan situs berjalan di `/`.
-- Karena GitHub Pages tidak punya server, optimasi gambar Next.js diganti loader
-  kustom (`lib/image-loader.ts`) yang menyajikan berkas asli dari `public/`.
+- `NEXT_PUBLIC_BASE_PATH` hanya dipakai saat situs masih di GitHub Pages
+  (sub-folder). Di Vercel variabel ini kosong, jadi situs disajikan dari root
+  `/`. Setelah Pages dimatikan, `basePath` bisa dihapus dari `next.config.ts`.
+- Karena situs statis, optimasi gambar Next.js diganti loader kustom
+  (`lib/image-loader.ts`) yang menyajikan berkas asli dari `public/`.
   Jaga ukuran berkas di `public/` tetap kecil.
 - Form kontak tetap berfungsi karena dikirim langsung dari browser pengunjung
   ke Web3Forms. Access key harus tersedia saat build, bukan saat runtime.
