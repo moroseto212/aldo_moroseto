@@ -231,8 +231,8 @@ export const projects: Project[] = [
 export const testimonials = [
   {
     quote:
-      "Komunikasinya jelas, jadwalnya tepat, dan animasi yang dibuat terasa mahal tanpa mengorbankan kecepatan situs. Klien kami puas sejak versi pertama.",
-    name: "Bagas Nugroho",
-    role: "Founder, Kreasi Studio",
+      "Bekerja satu tim dengan Anda membuat saya terbantu dalam mengatasi permasalahan yang ada. Sebagai sesama web dev, dia menyenangkan. Dia juga sangat cekatan saat debugging dan selalu terbuka berdiskusi untuk mencari solusi teknis yang paling efisien.",
+    name: "Zidan Herlangga",
+    role: "Website Developer, UI Designer",
   },
 ];
