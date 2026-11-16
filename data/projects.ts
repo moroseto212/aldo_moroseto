@@ -224,7 +224,7 @@ export const projects: Project[] = [
     coverFit: "native",
     coverWidth: 1920,
     coverHeight: 948,
-    link: "https://table-periodic-moroseto.vercel.app/",
+    link: "https://periodiclab.web.id",
   },
 ];
 
