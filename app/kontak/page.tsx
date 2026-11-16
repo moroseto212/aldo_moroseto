@@ -7,6 +7,7 @@ import { contact, site, socials } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Kontak",
+  alternates: { canonical: "/kontak" },
   description:
     "Hubungi Aldo Moroseto untuk proyek company profile & landing page atau web application & dashboard. Balasan dalam 1×24 jam.",
 };

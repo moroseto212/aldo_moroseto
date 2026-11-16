@@ -52,11 +52,20 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
+    images: [
+      {
+        url: "/og-image-v1.png",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — ${site.tagline}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
+    images: ["/og-image-v1.png"],
   },
   robots: { index: true, follow: true },
 };
@@ -73,9 +82,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        {/* Favicon sengaja dihapus; ikon kosong ini mencegah browser meminta
-            /favicon.ico yang tidak ada (404) tanpa memunculkan ikon baru. */}
-        <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" />
+        {/* Ikon tab, Apple touch icon, dan /favicon.ico disediakan otomatis
+            oleh app/icon.png, app/apple-icon.png, dan app/favicon.ico. */}
       </head>
       <body id="top" className="flex min-h-full flex-col">
         <MotionProvider>

@@ -6,6 +6,7 @@ import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
   title: "Portofolio",
+  alternates: { canonical: "/portofolio" },
   description: `Kumpulan proyek pilihan ${profile.name} — studi kasus lengkap dengan masalah, solusi, dan hasil yang dicapai.`,
 };
 

@@ -9,6 +9,7 @@ import { services } from "@/data/services";
 
 export const metadata: Metadata = {
   title: "Layanan",
+  alternates: { canonical: "/layanan" },
   description:
     "Jasa pembuatan website company profile & landing page, serta web application & dashboard — dikerjakan dari awal sampai peluncuran.",
 };

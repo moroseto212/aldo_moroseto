@@ -6,6 +6,7 @@ import { getAllPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "Blog",
+  alternates: { canonical: "/blog" },
   description:
     "Tulisan seputar performa web, desain antarmuka, animasi, dan pengembangan website — ditulis dari pengalaman proyek nyata.",
 };

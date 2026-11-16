@@ -10,6 +10,7 @@ import { formatNumber } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "Tentang",
+  alternates: { canonical: "/tentang" },
   description: `Kenali perjalanan, prinsip kerja, dan keahlian ${profile.name} — ${profile.role} dari Bekasi, Indonesia.`,
 };
 
