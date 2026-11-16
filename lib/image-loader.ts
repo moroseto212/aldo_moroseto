@@ -1,7 +1,6 @@
-// Loader gambar untuk static export di GitHub Pages.
-// `images.unoptimized` tidak menerapkan basePath, jadi prefix ditambahkan di sini.
+// Loader gambar untuk static export.
 // Width/quality tetap diteruskan sebagai query string supaya Next mengenali loader
-// ini mengimplementasikan width; GitHub Pages mengabaikan query dan menyajikan
+// ini mengimplementasikan width; hosting statis mengabaikan query dan menyajikan
 // berkas asli dari /public.
 export default function imageLoader({
   src,
@@ -14,6 +13,5 @@ export default function imageLoader({
 }): string {
   if (src.startsWith("http://") || src.startsWith("https://")) return src;
 
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-  return `${basePath}${src}?w=${width}&q=${quality ?? 75}`;
+  return `${src}?w=${width}&q=${quality ?? 75}`;
 }

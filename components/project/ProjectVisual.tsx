@@ -34,7 +34,7 @@ export default function ProjectVisual({
   // 1920w variant from an 896px file looks blurry. Show it at its natural size
   // (centered) and let the browser use the original file — pixel-for-pixel sharp.
   // `unoptimized` is deliberately NOT used here: it would skip the custom image
-  // loader and drop the basePath prefix on GitHub Pages.
+  // loader and drop the width/quality query the loader relies on.
   const nativeCover =
     grows && project.coverWidth !== undefined && project.coverWidth < 1200;
 
