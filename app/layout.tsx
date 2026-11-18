@@ -47,6 +47,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: site.author }],
   applicationName: site.name,
+  verification: {
+    google: "McRkQw_PHYHdmxDkZcR1VIDD2qkaZ5jJXkpSbELrCHk",
+  },
   appleWebApp: {
     capable: true,
     title: site.name,
