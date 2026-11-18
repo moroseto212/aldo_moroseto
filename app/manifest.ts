@@ -19,10 +19,10 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "id",
     categories: ["business", "portfolio", "developer"],
     icons: [
-      { src: "/icon-192-v5.png", sizes: "192x192", type: "image/png" },
-      { src: "/icon-512-v5.png", sizes: "512x512", type: "image/png" },
+      { src: "/icon-192-v6.png", sizes: "192x192", type: "image/png" },
+      { src: "/icon-512-v6.png", sizes: "512x512", type: "image/png" },
       {
-        src: "/icon-maskable-512-v5.png",
+        src: "/icon-maskable-512-v6.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "maskable",
