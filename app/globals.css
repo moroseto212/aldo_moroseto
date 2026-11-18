@@ -272,17 +272,17 @@
 .brand-mark {
   display: block;
   flex: none;
-  width: 2rem;
+  width: 1.66rem;
   height: 1.3125rem;
   background-color: var(--palette-foreground);
-  -webkit-mask: url("/brand-mark-v1.png") center / contain no-repeat;
-  mask: url("/brand-mark-v1.png") center / contain no-repeat;
+  -webkit-mask: url("/brand-mark-v2.png") center / contain no-repeat;
+  mask: url("/brand-mark-v2.png") center / contain no-repeat;
 }
 
 /* Di navbar, mark adalah satu-satunya identitas visual kiri, jadi sedikit
    lebih besar dari mark di footer. */
 .brand-mark-nav {
-  width: 2.5rem;
+  width: 2.06rem;
   height: 1.64rem;
 }
 
