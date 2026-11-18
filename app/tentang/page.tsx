@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "@/components/layout/PageHero";
 import Reveal from "@/components/motion/Reveal";
+import JsonLd, { profilePage } from "@/components/seo/JsonLd";
 import StatsSection from "@/components/sections/home/StatsSection";
 import Button from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -25,6 +26,7 @@ const summary = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={profilePage()} />
       <PageHero
         label="Tentang"
         title="Tiga setengah tahun merawat detail di balik layar"
@@ -61,7 +63,7 @@ export default function AboutPage() {
               <figure className="mx-auto max-w-sm border border-line bg-surface lg:max-w-none">
                 <Image
                   src={profile.photo}
-                  alt={`Foto ${profile.name}`}
+                  alt={`Foto ${profile.name}, ${profile.role}`}
                   width={720}
                   height={900}
                   className="aspect-[4/5] w-full object-cover object-top"

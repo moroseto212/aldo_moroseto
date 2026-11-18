@@ -6,9 +6,9 @@ export type NavItem = {
 
 export const site = {
   name: "Aldo Moroseto",
-  tagline: "Website Developer",
+  tagline: "Website Developer & Data Analyst",
   description:
-    "Website portfolio Aldo Moroseto, website developer yang membangun website cepat, responsif, dan bermakna.",
+    "Website portfolio Aldo Moroseto, website developer & data analyst yang membangun website cepat, responsif, dan bermakna serta mengubah data menjadi wawasan yang berguna.",
   url: "https://aldomoroseto.my.id",
   locale: "id_ID",
   author: "Aldo Moroseto",
@@ -25,8 +25,15 @@ export const navigation: NavItem[] = [
 
 export const socials = [
   { label: "GitHub", href: "https://github.com/moroseto212" },
+  { label: "LinkedIn", href: "https://id.linkedin.com/in/aldo-moroseto" },
+  { label: "Freelancer", href: "https://www.freelancer.com/u/aldomoroseto" },
+  { label: "YouTube", href: "https://www.youtube.com/@Ocelly212" },
   { label: "Instagram", href: "https://www.instagram.com/ku_setoo/" },
 ];
+
+// Dipakai oleh structured data `Person` supaya mesin pencari memahami bahwa
+// semua profil ini adalah satu orang yang sama.
+export const sameAs = socials.map((social) => social.href);
 
 export const contact = {
   email: "aldomoroseto668@gmail.com",

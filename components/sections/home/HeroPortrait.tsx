@@ -11,7 +11,7 @@ export default function HeroPortrait() {
       <div className="relative aspect-[4/5] overflow-hidden">
         <Image
           src={profile.heroPhoto}
-          alt={`Foto ${profile.name}`}
+          alt={`Foto ${profile.name}, ${profile.role}`}
           fill
           priority
           sizes="(min-width: 768px) 33vw, 100vw"

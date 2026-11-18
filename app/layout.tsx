@@ -5,6 +5,7 @@ import MotionProvider from "@/components/MotionProvider";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import TabBar from "@/components/layout/TabBar";
+import { IdentityJsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/data/site";
 
 const archivo = Archivo({
@@ -33,8 +34,13 @@ export const metadata: Metadata = {
   },
   description: site.description,
   keywords: [
+    "Aldo Moroseto",
+    "Aldo Moroseto website developer",
+    "Aldo Moroseto data analyst",
     "website developer",
     "web developer indonesia",
+    "website developer bekasi",
+    "data analyst indonesia",
     "jasa pembuatan website",
     "jasa website",
     "jasa bikin website",
@@ -83,6 +89,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <IdentityJsonLd />
         {/* Ikon tab, Apple touch icon, dan /favicon.ico disediakan otomatis
             oleh app/icon.png, app/apple-icon.png, dan app/favicon.ico. */}
       </head>

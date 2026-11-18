@@ -4,7 +4,7 @@ import Reveal from "@/components/motion/Reveal";
 import HeroPortrait from "@/components/sections/home/HeroPortrait";
 import { profile } from "@/data/profile";
 import { formatNumber } from "@/lib/format";
-import { contact } from "@/data/site";
+import { contact, site } from "@/data/site";
 
 const skills = ["React", "Next.js", "TypeScript", "Motion", "Tailwind CSS"];
 
@@ -27,8 +27,14 @@ export default function Hero() {
               <Badge dot>{contact.availability}</Badge>
             </Reveal>
 
-            <Reveal delay={0.06}>
-              <h1 className="mt-6 text-display text-balance">
+            <Reveal delay={0.04}>
+              <p className="label-mono mt-6 text-faint">
+                {site.name} / {site.tagline}
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <h1 className="mt-3 text-display text-balance">
                 Saya membangun website yang cepat, jelas, dan hidup.
               </h1>
             </Reveal>
