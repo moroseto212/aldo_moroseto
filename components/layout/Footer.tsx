@@ -11,7 +11,10 @@ export default async function Footer() {
       <div className="container-page py-14">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
-            <p className="text-2xl font-medium tracking-tight md:text-3xl">{site.name}</p>
+            <div className="flex items-center gap-3">
+              <span className="brand-mark" aria-hidden="true" />
+              <p className="text-2xl font-medium tracking-tight md:text-3xl">{site.name}</p>
+            </div>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
               {site.description}
             </p>

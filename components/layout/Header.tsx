@@ -59,6 +59,7 @@ export default function Header() {
             className="group -m-1 flex items-center gap-3 p-1"
             aria-label="Aldo Moroseto — kembali ke beranda"
           >
+            <span className="brand-mark" aria-hidden="true" />
             <span className="label-mono text-foreground transition-colors group-hover:text-muted">
               Aldo Moroseto
             </span>
