@@ -279,6 +279,13 @@
   mask: url("/brand-mark-v1.png") center / contain no-repeat;
 }
 
+/* Di navbar, mark adalah satu-satunya identitas visual kiri, jadi sedikit
+   lebih besar dari mark di footer. */
+.brand-mark-nav {
+  width: 2.5rem;
+  height: 1.64rem;
+}
+
 .text-gradient {
   background: linear-gradient(120deg, #fff 0%, #e8e6e3 55%, #b8b2a4 100%);
   -webkit-background-clip: text;
