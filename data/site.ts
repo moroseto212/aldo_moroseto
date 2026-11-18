@@ -6,9 +6,9 @@ export type NavItem = {
 
 export const site = {
   name: "Aldo Moroseto",
-  tagline: "Website Developer & Data Analyst",
+  tagline: "Website Developer",
   description:
-    "Website portfolio Aldo Moroseto, website developer & data analyst yang membangun website cepat, responsif, dan bermakna serta mengubah data menjadi wawasan yang berguna.",
+    "Portofolio Aldo Moroseto, website developer di Bekasi yang membangun website cepat, responsif, dan mudah dirawat, mulai dari company profile dan landing page hingga web application.",
   url: "https://aldomoroseto.my.id",
   locale: "id_ID",
   author: "Aldo Moroseto",

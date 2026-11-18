@@ -35,7 +35,7 @@ export async function generateMetadata({
       type: "article",
       images: [
         {
-          url: "/og-image-v1.png",
+          url: "/og-icon.png",
           width: 1200,
           height: 630,
           alt: project.title,
