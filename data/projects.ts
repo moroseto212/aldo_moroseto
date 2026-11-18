@@ -51,7 +51,7 @@ export const projectCategories: ProjectCategory[] = [
 export const projects: Project[] = [
   {
     slug: "burungin",
-    title: "Burungin / Game",
+    title: "Burungin",
     client: "Personal Project",
     categories: ["Game"],
     year: 2026,
@@ -84,7 +84,7 @@ export const projects: Project[] = [
   },
   {
     slug: "dish-drink",
-    title: "Dish Drink / Company Profile & Social Media",
+    title: "Dish Drink",
     client: "Dish Drink",
     categories: ["Social Media"],
     year: 2026,
@@ -120,7 +120,7 @@ export const projects: Project[] = [
   },
   {
     slug: "alat-berat",
-    title: "Alat Berat / Company Profile & Dashboard",
+    title: "Alat Berat",
     client: "Alat Berat",
     categories: ["Company Profile", "E-Commerce", "Dashboard", "Web App"],
     year: 2026,
@@ -161,7 +161,7 @@ export const projects: Project[] = [
   },
   {
     slug: "noxen",
-    title: "Noxen / Company Profile",
+    title: "Noxen",
     client: "Noxen",
     categories: ["Company Profile", "Web App", "E-Commerce"],
     year: 2026,
@@ -194,7 +194,7 @@ export const projects: Project[] = [
   },
   {
     slug: "periodiklab",
-    title: "PeriodikLab / Tabel Periodik & Laboratorium Kimia",
+    title: "PeriodikLab",
     client: "Personal Project",
     categories: ["Web App"],
     year: 2026,
