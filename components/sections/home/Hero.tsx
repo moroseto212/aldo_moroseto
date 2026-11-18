@@ -16,7 +16,7 @@ export default function Hero() {
           <div className="flex items-baseline justify-between gap-6 border-b border-line pb-4">
             <span className="label-mono text-foreground">Beranda</span>
             <span className="label-mono hidden text-faint sm:block">
-              Arsip — {formatNumber(profile.yearsOfExperience)} tahun
+              Arsip / {formatNumber(profile.yearsOfExperience)} tahun
             </span>
           </div>
         </Reveal>

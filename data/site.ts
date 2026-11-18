@@ -8,7 +8,7 @@ export const site = {
   name: "Aldo Moroseto",
   tagline: "Website Developer",
   description:
-    "Website portfolio Aldo Moroseto — website developer yang membangun website cepat, responsif, dan bermakna.",
+    "Website portfolio Aldo Moroseto, website developer yang membangun website cepat, responsif, dan bermakna.",
   url: "https://aldomoroseto.my.id",
   locale: "id_ID",
   author: "Aldo Moroseto",

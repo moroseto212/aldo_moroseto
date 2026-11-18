@@ -22,7 +22,7 @@ export function formatDate(iso: string): string {
 }
 
 export function yearRange(start: number, end?: number): string {
-  return end ? `${start} — ${end}` : `${start}`;
+  return end ? `${start}–${end}` : `${start}`;
 }
 
 export function formatNumber(value: number): string {

@@ -79,7 +79,7 @@ export default function ProjectDetailPage({ params }: PageProps<"/portofolio/[sl
                   Semua proyek
                 </Link>
                 <span className="label-mono hidden text-faint sm:block">
-                  Portofolio — Arsip
+                  Portofolio / Arsip
                 </span>
               </div>
             </Reveal>
@@ -112,7 +112,7 @@ async function ProjectHeading({ params }: { params: ProjectParams }) {
             {String(position).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
           </span>
           <span aria-hidden="true" className="text-faint">
-            —
+            /
           </span>
           <span className="label-mono text-muted">
             {project.categories.join(" · ")} · {project.year} · {project.role}

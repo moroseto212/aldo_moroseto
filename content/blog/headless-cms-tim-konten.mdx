@@ -10,7 +10,7 @@ tags: [cms, headless, konten]
 
 ## Apa itu headless CMS
 
-CMS tradisional (WordPress misalnya) mengelola konten sekaligus merender halamannya. Headless CMS hanya mengelola konten — lalu menyajikannya lewat API. Front-end Anda (Next.js, Astro, atau apa pun) mengambil data itu dan menampilkan sesuai desainnya sendiri.
+CMS tradisional (WordPress misalnya) mengelola konten sekaligus merender halamannya. Headless CMS hanya mengelola konten, lalu menyajikannya lewat API. Front-end Anda (Next.js, Astro, atau apa pun) mengambil data itu dan menampilkan sesuai desainnya sendiri.
 
 Konsekuensinya jelas: tim konten bebas mengedit, developer bebas soal tampilan, dan keduanya tidak saling mengunci.
 
@@ -37,7 +37,7 @@ const query = `*[_type == "post" && publishedAt < now()] | order(publishedAt des
 
 ## Hal yang harus disiapkan sejak awal
 
-Pertama, **skema konten yang jelas** — tentukan tipe, field, dan hubungannya sebelum mulai mengisi. Kedua, **preview langsung** agar editor melihat hasil akhirnya. Ketiga, **dokumentasi singkat** untuk tim konten: apa yang boleh diedit, bagian mana yang dikunci.
+Pertama, **skema konten yang jelas**: tentukan tipe, field, dan hubungannya sebelum mulai mengisi. Kedua, **preview langsung** agar editor melihat hasil akhirnya. Ketiga, **dokumentasi singkat** untuk tim konten: apa yang boleh diedit, bagian mana yang dikunci.
 
 ## Kesimpulan
 

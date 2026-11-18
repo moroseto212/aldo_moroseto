@@ -81,7 +81,7 @@ export default function BlogPostPage({ params }: PageProps<"/blog/[slug]">) {
                   />
                   Semua artikel
                 </Link>
-                <span className="label-mono hidden text-faint sm:block">Blog — Arsip</span>
+                <span className="label-mono hidden text-faint sm:block">Blog / Arsip</span>
               </div>
             </Reveal>
 
@@ -114,7 +114,7 @@ async function PostHeading({ params }: { params: PostParams }) {
             {String(position).padStart(2, "0")} / {String(posts.length).padStart(2, "0")}
           </span>
           <span aria-hidden="true" className="text-faint">
-            —
+            /
           </span>
           <span className="label-mono text-muted">
             {post.category}

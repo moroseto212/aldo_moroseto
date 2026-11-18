@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Blog",
   alternates: { canonical: "/blog" },
   description:
-    "Tulisan seputar performa web, desain antarmuka, animasi, dan pengembangan website — ditulis dari pengalaman proyek nyata.",
+    "Tulisan seputar performa web, desain antarmuka, animasi, dan pengembangan website, ditulis dari pengalaman proyek nyata.",
 };
 
 export default async function BlogPage() {
@@ -19,7 +19,7 @@ export default async function BlogPage() {
       <PageHero
         label="Blog"
         title="Catatan dari lapangan"
-        description="Tulisan tentang performa, desain, animasi, dan teknologi web — berdasarkan pengalaman mengerjakan proyek nyata, bukan teori semata."
+        description="Tulisan tentang performa, desain, animasi, dan teknologi web, berdasarkan pengalaman mengerjakan proyek nyata, bukan teori semata."
       />
 
       <section className="py-16 md:py-24">

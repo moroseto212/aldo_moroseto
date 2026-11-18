@@ -46,8 +46,8 @@
   --color-accent-2: var(--palette-accent-2);
   --color-success: var(--palette-success);
   --color-danger: var(--palette-danger);
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-sans: var(--font-archivo), Archivo, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
 /* Ikon tema: hanya satu yang terlihat, ditentukan atribut di <html>. */

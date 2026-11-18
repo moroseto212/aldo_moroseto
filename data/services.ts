@@ -35,7 +35,7 @@ export const services: Service[] = [
       { step: "03", title: "Pengembangan", description: "Membangun website responsif dengan animasi halus dan performa tinggi." },
       { step: "04", title: "QA & peluncuran", description: "Uji lintas device, optimasi, lalu online dan serah terima." },
     ],
-    duration: "2 — 4 minggu",
+    duration: "2–4 minggu",
     priceFrom: "Rp 1 juta",
   },
   {
@@ -44,7 +44,7 @@ export const services: Service[] = [
     summary:
       "Aplikasi web khusus: dashboard, portal klien, hingga produk SaaS dengan alur yang logis.",
     description:
-      "Saya membangun aplikasi web dari sisi tampilan sampai integrasi API — termasuk autentikasi, tabel data kompleks, filter, dan visualisasi. Fokusnya selalu sama: antarmuka yang rumit terasa sederhana saat dipakai.",
+      "Saya membangun aplikasi web dari sisi tampilan sampai integrasi API, termasuk autentikasi, tabel data kompleks, filter, dan visualisasi. Fokusnya selalu sama: antarmuka yang rumit terasa sederhana saat dipakai.",
     icon: Code2,
     deliverables: [
       "Arsitektur komponen & state management",
@@ -59,7 +59,7 @@ export const services: Service[] = [
       { step: "03", title: "Iterasi", description: "Sprint dua mingguan dengan demo rutin bersama Anda." },
       { step: "04", title: "Rilis", description: "Deploy, monitoring, dan pendampingan pasca-peluncuran." },
     ],
-    duration: "4 — 10 minggu",
+    duration: "4–10 minggu",
     priceFrom: "Rp 3,5 juta",
   },
 ];
@@ -73,7 +73,7 @@ export const faqs: FaqItem[] = [
   {
     question: "Berapa lama satu proyek website selesai?",
     answer:
-      "Landing page atau company profile umumnya 2—4 minggu, aplikasi web 4—10 minggu tergantung kompleksitas. Jadwal pasti disepakati setelah brief pertama.",
+      "Landing page atau company profile umumnya 2–4 minggu, aplikasi web 4–10 minggu tergantung kompleksitas. Jadwal pasti disepakati setelah brief pertama.",
   },
   {
     question: "Bagaimana sistem pembayarannya?",

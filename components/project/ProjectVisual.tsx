@@ -90,7 +90,7 @@ export default function ProjectVisual({
                   className="block h-auto w-full border border-line"
                 />
                 <figcaption className="mt-3 text-center text-xs text-faint">
-                  Halaman admin — kelola konten &amp; data tanpa menyentuh kode
+                  Halaman admin / kelola konten &amp; data tanpa menyentuh kode
                 </figcaption>
               </figure>
             )}

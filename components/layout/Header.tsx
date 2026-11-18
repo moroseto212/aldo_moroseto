@@ -57,7 +57,7 @@ export default function Header() {
             href="/"
             prefetch={false}
             className="group -m-1 flex items-center gap-3 p-1"
-            aria-label="Aldo Moroseto — kembali ke beranda"
+            aria-label="Aldo Moroseto / kembali ke beranda"
           >
             <span className="brand-mark brand-mark-nav" aria-hidden="true" />
           </Link>

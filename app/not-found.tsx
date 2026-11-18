@@ -8,7 +8,7 @@ export default function NotFound() {
         <Reveal>
           <div className="flex items-baseline justify-between gap-6 border-b border-line pb-4">
             <span className="label-mono text-foreground">Error</span>
-            <span className="label-mono text-faint">Arsip — Aldo Moroseto</span>
+            <span className="label-mono text-faint">Arsip / Aldo Moroseto</span>
           </div>
 
           <p className="mt-10 font-mono text-[clamp(4rem,16vw,9rem)] leading-none tracking-tight text-gradient">

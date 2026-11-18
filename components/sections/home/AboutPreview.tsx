@@ -14,7 +14,7 @@ export default function AboutPreview() {
             <SectionHeading
               label="Tentang"
               title="Detail-oriented, hasil-oriented"
-              description="Saya bekerja dekat dengan konten dan tujuan bisnis Anda — bukan hanya menghias tampilan."
+              description="Saya bekerja dekat dengan konten dan tujuan bisnis Anda, bukan hanya menghias tampilan."
             />
 
             <Reveal delay={0.1}>

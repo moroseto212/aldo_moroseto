@@ -51,7 +51,7 @@ export const projectCategories: ProjectCategory[] = [
 export const projects: Project[] = [
   {
     slug: "burungin",
-    title: "Burungin — Game",
+    title: "Burungin / Game",
     client: "Personal Project",
     categories: ["Game"],
     year: 2026,
@@ -84,7 +84,7 @@ export const projects: Project[] = [
   },
   {
     slug: "dish-drink",
-    title: "Dish Drink — Company Profile & Social Media",
+    title: "Dish Drink / Company Profile & Social Media",
     client: "Dish Drink",
     categories: ["Social Media"],
     year: 2026,
@@ -120,7 +120,7 @@ export const projects: Project[] = [
   },
   {
     slug: "alat-berat",
-    title: "Alat Berat — Company Profile & Dashboard",
+    title: "Alat Berat / Company Profile & Dashboard",
     client: "Alat Berat",
     categories: ["Company Profile", "E-Commerce", "Dashboard", "Web App"],
     year: 2026,
@@ -161,7 +161,7 @@ export const projects: Project[] = [
   },
   {
     slug: "noxen",
-    title: "Noxen — Company Profile",
+    title: "Noxen / Company Profile",
     client: "Noxen",
     categories: ["Company Profile", "Web App", "E-Commerce"],
     year: 2026,
@@ -172,7 +172,7 @@ export const projects: Project[] = [
     problem:
       "Noxen belum punya kehadiran online yang meyakinkan, sehingga calon klien sulit menilai kredibilitas dan cakupan layanannya dari satu sumber.",
     solution:
-      "Saya membangun website profil dengan struktur yang bersih: hero yang menonjolkan positioning, halaman layanan yang mudah dipindai, bukti sosial, dan jalur kontak yang jelas — semuanya responsif dan cepat di ponsel.",
+      "Saya membangun website profil dengan struktur yang bersih: hero yang menonjolkan positioning, halaman layanan yang mudah dipindai, bukti sosial, dan jalur kontak yang jelas, semuanya responsif dan cepat di ponsel.",
     features: [
       "Struktur halaman yang jelas & mudah dipindai",
       "Desain responsif mobile-first",
@@ -194,14 +194,14 @@ export const projects: Project[] = [
   },
   {
     slug: "periodiklab",
-    title: "PeriodikLab — Tabel Periodik & Laboratorium Kimia",
+    title: "PeriodikLab / Tabel Periodik & Laboratorium Kimia",
     client: "Personal Project",
     categories: ["Web App"],
     year: 2026,
     role: "Developer",
     stack: ["Vite", "React", "Zustand", "Zod"],
     summary:
-      "Tabel periodik interaktif berbahasa Indonesia: 118 unsur, laboratorium reaksi virtual, dan tantangan kimia — tanpa akun dan tanpa backend.",
+      "Tabel periodik interaktif berbahasa Indonesia: 118 unsur, laboratorium reaksi virtual, dan tantangan kimia, tanpa akun dan tanpa backend.",
     problem:
       "Belajar kimia butuh data unsur, ruang mencoba reaksi, dan latihan soal sekaligus. Tanpa satu alat terpadu, prosesnya berpindah-pindah dan sulit diulang.",
     solution:

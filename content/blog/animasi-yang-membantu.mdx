@@ -12,7 +12,7 @@ Animasi adalah bumbu. Terlalu sedikit, antarmuka terasa kaku. Terlalu banyak, pe
 
 Setiap gerakan harus menjawab satu dari tiga pertanyaan:
 
-1. **Ke mana elemen ini pergi?** Transisi harus menunjukkan hubungan antar keadaan — misalnya item daftar yang terbuka menjadi detail.
+1. **Ke mana elemen ini pergi?** Transisi harus menunjukkan hubungan antar keadaan, misalnya item daftar yang terbuka menjadi detail.
 2. **Apa yang baru berubah?** Highlight, badge, atau notifikasi perlu muncul agar perubahan tidak luput.
 3. **Di mana perhatian saya seharusnya?** Reveal saat scroll memandang mata ke bagian berikutnya secara alami.
 
@@ -28,7 +28,7 @@ Untuk easing, kurva yang keluar cepat lalu melandai terasa paling alami:
 const transition = { duration: 0.6, ease: [0.22, 1, 0.36, 1] };
 ```
 
-Hindari easing masuk-keluar simetris untuk transisi halaman — rasanya seperti melambat dua kali.
+Hindari easing masuk-keluar simetris untuk transisi halaman, rasanya seperti melambat dua kali.
 
 <Callout type="warning" title="Hormati prefers-reduced-motion">
   Sebagian pengguna mengalami pusing atau mual akibat animasi. Selalu aktifkan dukungan prefers-reduced-motion. Di Motion, cukup bungkus aplikasi dengan &lt;MotionConfig reducedMotion="user"&gt;.
@@ -39,7 +39,7 @@ Hindari easing masuk-keluar simetris untuk transisi halaman — rasanya seperti 
 - **Reveal bertahap** saat section masuk layar, dengan jeda 50–80 milidetik antar elemen.
 - **Hover micro-interaction** pada tombol dan kartu: sedikit perubahan posisi atau skala, tanpa mengubah layout.
 - **Sticky header** yang memperoleh latar dan bayangan setelah scroll tertentu.
-- **Counter animasi** untuk statistik — angka bergerak dari nol sekali saat terlihat.
+- **Counter animasi** untuk statistik, angka bergerak dari nol sekali saat terlihat.
 
 ## Pola yang sering mengganggu
 
@@ -51,4 +51,4 @@ Parallax berlebihan yang membuat teks sulit dibaca, autoplay video suara, animas
 
 ## Kesimpulan
 
-Animasi terbaik adalah yang tidak disadari pengguna — mereka hanya merasa aplikasinya terasa "enak". Mulailah dari konten statis yang sudah jelas strukturnya, baru tambahkan gerakan di atasnya. Konten tetap rapi bahkan sebelum animasi dimuat.
+Animasi terbaik adalah yang tidak disadari pengguna, mereka hanya merasa aplikasinya terasa "enak". Mulailah dari konten statis yang sudah jelas strukturnya, baru tambahkan gerakan di atasnya. Konten tetap rapi bahkan sebelum animasi dimuat.

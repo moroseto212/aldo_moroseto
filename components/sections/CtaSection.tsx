@@ -9,7 +9,7 @@ type CtaSectionProps = {
 
 export default function CtaSection({
   title = "Punya ide? Mari wujudkan bersama",
-  description = "Ceritakan kebutuhan Anda — saya akan balas dengan estimasi ruang lingkup, jadwal, dan biaya dalam 1×24 jam.",
+  description = "Ceritakan kebutuhan Anda, saya akan balas dengan estimasi ruang lingkup, jadwal, dan biaya dalam 1×24 jam.",
 }: CtaSectionProps) {
   return (
     <section className="border-t border-line py-16 md:py-24">

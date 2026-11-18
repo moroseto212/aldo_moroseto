@@ -13,7 +13,7 @@ export default function FeaturedProjects() {
           <SectionHeading
             label="Portofolio"
             title="Karya pilihan terbaru"
-            description="Beberapa proyek yang saya kerjakan baru-baru ini — lengkap dengan masalah, solusi, dan hasilnya."
+            description="Beberapa proyek yang saya kerjakan baru-baru ini, lengkap dengan masalah, solusi, dan hasilnya."
             className="mb-0"
           />
           <div className="shrink-0">

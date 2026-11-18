@@ -66,7 +66,7 @@ export default function ContactForm() {
       // FormData dipakai (bukan JSON) agar tidak memicu preflight CORS.
       const payload = new FormData();
       payload.set("access_key", accessKey);
-      payload.set("subject", `Permintaan proyek — ${selectedService} dari ${name}`);
+      payload.set("subject", `Permintaan proyek / ${selectedService} dari ${name}`);
       payload.set("from_name", "Website Aldo Moroseto");
       payload.set("name", name);
       payload.set("email", email);

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Layanan",
   alternates: { canonical: "/layanan" },
   description:
-    "Jasa pembuatan website company profile & landing page, serta web application & dashboard — dikerjakan dari awal sampai peluncuran.",
+    "Jasa pembuatan website company profile & landing page, serta web application & dashboard. Dikerjakan dari awal sampai peluncuran.",
 };
 
 export default function ServicesPage() {
@@ -20,7 +20,7 @@ export default function ServicesPage() {
       <PageHero
         label="Layanan"
         title="Dari brief sampai website meluncur"
-        description="Dua layanan yang bisa berdiri sendiri atau digabung dalam satu proyek. Semua dikerjakan langsung oleh saya — tanpa lempar ke tim tak dikenal."
+        description="Dua layanan yang bisa berdiri sendiri atau digabung dalam satu proyek. Semua dikerjakan langsung oleh saya, tanpa lempar ke tim tak dikenal."
       >
         <div className="flex flex-wrap gap-3">
           <Button href="/kontak">Minta estimasi</Button>
@@ -148,7 +148,7 @@ export default function ServicesPage() {
 
       <CtaSection
         title="Tidak yakin harus mulai dari mana?"
-        description="Ceritakan masalahnya, saya bantu tentukan layanan mana yang benar-benar Anda butuhkan — termasuk jika jawabannya bukan jasa saya."
+        description="Ceritakan masalahnya, saya bantu tentukan layanan mana yang benar-benar Anda butuhkan, termasuk jika jawabannya bukan jasa saya."
       />
     </>
   );

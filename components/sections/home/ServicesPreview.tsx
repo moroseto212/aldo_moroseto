@@ -13,7 +13,7 @@ export default function ServicesPreview() {
         <SectionHeading
           label="Layanan"
           title="Bisa saya bantu apa"
-          description="Dari website profil sampai aplikasi web kompleks — dikerjakan satu orang dari desain hingga peluncuran."
+          description="Dari website profil sampai aplikasi web kompleks, dikerjakan satu orang dari desain hingga peluncuran."
         />
 
         <div className="border-t border-line">

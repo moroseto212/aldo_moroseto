@@ -11,7 +11,7 @@ import { formatNumber } from "@/lib/format";
 export const metadata: Metadata = {
   title: "Tentang",
   alternates: { canonical: "/tentang" },
-  description: `Kenali perjalanan, prinsip kerja, dan keahlian ${profile.name} — ${profile.role} dari Bekasi, Indonesia.`,
+  description: `Kenali perjalanan, prinsip kerja, dan keahlian ${profile.name}, ${profile.role} dari Bekasi, Indonesia.`,
 };
 
 const summary = [
@@ -28,7 +28,7 @@ export default function AboutPage() {
       <PageHero
         label="Tentang"
         title="Tiga setengah tahun merawat detail di balik layar"
-        description="Perjalanan dari developer freelance di Bekasi hingga menjadi website developer yang membangun produk digital — dengan prinsip kerja yang selalu sama."
+        description="Perjalanan dari developer freelance di Bekasi hingga menjadi website developer yang membangun produk digital, dengan prinsip kerja yang selalu sama."
       >
         <div className="flex flex-wrap gap-3">
           <Button href="/kontak">Ajak kerja sama</Button>
@@ -100,7 +100,7 @@ export default function AboutPage() {
         <SectionHeading
           label="Perjalanan"
           title="Pengalaman kerja"
-          description="Beberapa tahun mengerjakan website untuk klien dari berbagai industri — satu peran, satu standar: kerapihan, kecepatan, dan komunikasi yang jelas."
+          description="Beberapa tahun mengerjakan website untuk klien dari berbagai industri. Satu peran, satu standar: kerapihan, kecepatan, dan komunikasi yang jelas."
         />
 
         <ol className="border-t border-line">
@@ -109,7 +109,7 @@ export default function AboutPage() {
               <li className="grid gap-5 border-b border-line py-7 md:grid-cols-12 md:gap-8 md:py-9">
                 <div className="md:col-span-4">
                   <span className="label-mono text-faint">
-                    {String(index + 1).padStart(2, "0")} — {item.period}
+                    {String(index + 1).padStart(2, "0")} / {item.period}
                   </span>
                   <h3 className="mt-3 text-lg font-medium tracking-tight md:text-xl">
                     {item.role}
@@ -167,7 +167,7 @@ export default function AboutPage() {
         <SectionHeading
           label="Keahlian"
           title="Perkakas sehari-hari"
-          description="Teknologi yang saya pakai untuk membangun produk — dipilih karena matang, cepat, dan enak dirawat."
+          description="Teknologi yang saya pakai untuk membangun produk, dipilih karena matang, cepat, dan enak dirawat."
         />
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {skills.map((group, index) => (

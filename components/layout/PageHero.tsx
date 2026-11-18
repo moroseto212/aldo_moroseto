@@ -16,7 +16,7 @@ export default function PageHero({ label, title, description, children }: PageHe
           <div className="flex items-baseline justify-between gap-6 border-b border-line pb-4">
             <span className="label-mono text-foreground">{label}</span>
             <span className="label-mono hidden text-faint sm:block">
-              Arsip — Aldo Moroseto
+              Arsip / Aldo Moroseto
             </span>
           </div>
         </Reveal>
